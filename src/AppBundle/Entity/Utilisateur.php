@@ -114,7 +114,7 @@ class Utilisateur
     private $propositionsSeries;
 
     /**
-     * @ORM\OneToMany(targetEntity="Serie", mappedBy="auteur")
+     * @ORM\OneToMany(targetEntity="Critique", mappedBy="auteur")
      */
     private $critiques;
 

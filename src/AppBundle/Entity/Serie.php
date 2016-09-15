@@ -67,7 +67,7 @@ class Serie
      * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="abonnements")
      */
     private $abonnes;
-    
+
     /**
      * @ORM\OneToMany(targetEntity="Role", mappedBy="serie")
      */
@@ -88,7 +88,7 @@ class Serie
      */
     private $critiques;
 
-    /*
+    /**
      * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="propositionsSeries")
      */
     private $auteurProposition;
