@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class SerieType extends AbstractType
 {
@@ -19,14 +20,12 @@ class SerieType extends AbstractType
             ->add('pays')
             ->add('anneeDebut')
             ->add('status')
-            ->add('note')
             ->add('synopsis')
-            ->add('abonnes')
-            ->add('realisateur')
-            ->add('auteurProposition')
+            ->add('realisateur', EntityType::class, ["class" => "AppBundle:Realisateur", "choice_label" => "Réalisateur"])
+            ->add('roles', RoleType::class, ["label" => "Acteurs et rôles associés"])
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

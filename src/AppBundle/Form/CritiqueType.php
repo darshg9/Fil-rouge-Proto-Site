@@ -16,13 +16,9 @@ class CritiqueType extends AbstractType
     {
         $builder
             ->add('contenu')
-            ->add('dateCritique', 'datetime')
-            ->add('note')
-            ->add('serie')
-            ->add('auteur')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

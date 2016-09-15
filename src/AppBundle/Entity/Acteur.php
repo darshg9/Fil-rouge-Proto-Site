@@ -59,6 +59,11 @@ class Acteur
      */
     private $auteurProposition;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", nullable=true)
+     */
     private $url;
 
     private $valide = false;

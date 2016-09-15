@@ -152,9 +152,9 @@ class Episode
      * @param array $diffusionsFutures
      * @return Episode
      */
-    public function setDiffusionsFutures($diffusionsFutures)
+    public function addDiffusionFuture($diffusionFuture)
     {
-        $this->diffusionsFutures = $diffusionsFutures;
+        $this->diffusionsFutures[] = $diffusionFuture;
 
         return $this;
     }

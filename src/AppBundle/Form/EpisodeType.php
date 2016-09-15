@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class EpisodeType extends AbstractType
 {
@@ -18,13 +19,11 @@ class EpisodeType extends AbstractType
             ->add('titre')
             ->add('duree', 'time')
             ->add('resume')
-            ->add('diffusionsFutures')
-            ->add('saison')
-            ->add('auteurProposition')
-            ->add('viewers')
+            ->add('diffusionsFutures', 'datetime')
+            ->add('saison', EntityType::class, ["class" => "AppBundle:Saison", "choice_label" => "Saison:"])
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
