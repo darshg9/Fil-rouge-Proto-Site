@@ -8,7 +8,7 @@
                 <div class="row">
                     <!--/////////////////********|Image and Rating|********\\\\\\\\\\\\\\\\\!-->
                     <div class="col-sm-7">
-                        <img src="http://www.virabuz.com/wp-content/uploads/2016/06/Emilia-Clarke-Hair.jpg" class="img-responsive" alt="Cinque Terre">
+                        <img src="{{acteur.url}}" class="img-responsive" alt="Cinque Terre">
                     </div>
                     <!--/////////////////********| Description Série|********\\\\\\\\\\\\\\\\\!-->
                     <div class=" col-sm-5 flexcol" >
@@ -37,11 +37,11 @@
                                     <tbody>
                                         <tr>
                                             <td>Date de naissance :</td>
-                                            <td></td>
+                                            <td>{% if acteur.dateNaissance %}{{ acteur.dateNaissance|date('Y-m-d H:i:s') }}{% endif %}</td>
                                         </tr>
                                         <tr>
                                             <td>Nationalité :</td>
-                                            <td></td>
+                                            <td>{{ acteur.nationalite }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -113,39 +113,4 @@
 
     </div>
 </section>
-<h1>Acteur</h1>
-
-<table>
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ acteur.id }}</td>
-        </tr>
-        <tr>
-            <th>Nom</th>
-            <td>{{ acteur.nom }}</td>
-        </tr>
-        <tr>
-            <th>Prenom</th>
-            <td>{{ acteur.prenom }}</td>
-        </tr>
-        <tr>
-            <th>Nationalite</th>
-            <td>{{ acteur.nationalite }}</td>
-        </tr>
-        <tr>
-            <th>Datenaissance</th>
-            <td>{% if acteur.dateNaissance %}{{ acteur.dateNaissance|date('Y-m-d H:i:s') }}{% endif %}</td>
-        </tr>
-    </tbody>
-</table>
-
-<ul>
-    <li>
-        <a href="">Edit</a>
-    </li>
-    <li>
-
-    </li>
-</ul>
 {% endblock %}
