@@ -95,6 +95,8 @@ class Serie
 
     private $url;
 
+    private $valide;
+
     /**
      * Get id
      *
@@ -334,6 +336,22 @@ class Serie
 
         $this->url = $url;
         return $this;
+
+    }
+
+    public function getValide() {
+
+        return $this->valide;
+
+    }
+
+    public function setValide() {
+
+        if(!$this->valide) {
+
+            $this->valide = true;
+
+        }
 
     }
 

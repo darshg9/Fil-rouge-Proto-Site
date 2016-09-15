@@ -64,6 +64,8 @@ class Episode
      */
     private $viewers;
 
+    private $valide;
+
 
     /**
      * Get id
@@ -206,6 +208,22 @@ class Episode
     public function getViewers() {
 
         return $this->viewers;
+
+    }
+
+    public function getValide() {
+
+        return $this->valide;
+
+    }
+
+    public function setValide() {
+
+        if(!$this->valide) {
+
+            $this->valide = true;
+
+        }
 
     }
 

@@ -61,6 +61,8 @@ class Acteur
 
     private $url;
 
+    private $valide = false;
+
     /**
      * Get id
      *
@@ -200,6 +202,22 @@ class Acteur
 
         $this->url = $url;
         return $this;
+
+    }
+
+    public function getValide() {
+
+        return $this->valide;
+
+    }
+
+    public function setValide() {
+
+        if(!$this->valide) {
+
+            $this->valide = true;
+
+        }
 
     }
 
