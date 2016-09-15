@@ -1,45 +1,63 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Acteur list</h1>
+    <section>
+        <div class="row">
+            <div class="col-sm-10">
+                <!--/////////////////********|Titre|********\\\\\\\\\\\\\\\\\!-->
+                <div class="row flexrow">
+                    <div class="col-sm-offset-2 col-sm-4">
+                        <h1>Liste des Acteurs</h1>
+                    </div>
+                    <div class="col-sm-4 ">
+                        <a href="login.php" class="aButton pull-right" >
+                            <div class="btn btn-info">
+                                <div class="BoxFrameBtn">
+                                    <p>Proposer un Acteur</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <hr>
+                <!--/////////////////********|Bar de recherche|********\\\\\\\\\\\\\\\\\!-->
+                <div>
+                    <div class="flexcol">
+                        <div class="flexrow" style="justify-content:  center;">
+                            <form method='get' action='' class='form-inline flexrow' style='align-items:  center;justify-content:  space-between;
+                                  width : 80%;'>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="search" placeholder="Entrer un mot clé">
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Nationalite</th>
-                <th>Datenaissance</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for acteur in acteurs %}
-            <tr>
-                <td><a href="{{ path('acteur_show', { 'id': acteur.id }) }}">{{ acteur.id }}</a></td>
-                <td>{{ acteur.nom }}</td>
-                <td>{{ acteur.prenom }}</td>
-                <td>{{ acteur.nationalite }}</td>
-                <td>{% if acteur.dateNaissance %}{{ acteur.dateNaissance|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('acteur_show', { 'id': acteur.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('acteur_edit', { 'id': acteur.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </div>
+                                    </div>
+                                </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('acteur_new') }}">Create a new entry</a>
-        </li>
-    </ul>
-{% endblock %}
+
+                                <button class="BoxFrameBtn btn-success" type='submit'>
+                                    <p>Chercher</p>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--/////////////////********|Liste des Acteurs|********\\\\\\\\\\\\\\\\\!-->
+                {% for acteur in acteurs %}
+                    <div class='flexrow' style='justify-content:  center;'>
+                        <div class="smallBox" style='background-image: url("http://www.virabuz.com/wp-content/uploads/2016/06/Emilia-Clarke-Hair.jpg");background-size: cover;background-repeat: no-repeat;background-position-x: 50%;'>
+                            <a href="{{ path('acteur_show', { 'id': acteur.id }) }}">
+                                <div class="BoxFrame" style=" height: 300px;">
+                                    <div class="BoxTitle flexrow" style="text-shadow: 2px 2px black;justify-content:  flex-end;">
+                                        <h2 style="padding:3px; align-self: flex-end">{{ acteur.prenom }} {{ acteur.nom }}</h2>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}

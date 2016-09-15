@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActeurType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -15,14 +16,15 @@ class ActeurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('nationalite')
-            ->add('dateNaissance', 'datetime')
-            ->add('auteurProposition')
+                ->add('nom')
+                ->add('prenom')
+                ->add('nationalite')
+                ->add('dateNaissance', 'datetime')
+                ->add('auteurProposition')
+
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
@@ -32,4 +34,5 @@ class ActeurType extends AbstractType
             'data_class' => 'AppBundle\Entity\Acteur'
         ));
     }
+
 }
