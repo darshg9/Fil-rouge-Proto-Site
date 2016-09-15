@@ -47,7 +47,7 @@
                 <!--/////////////////********|Liste des Acteurs|********\\\\\\\\\\\\\\\\\!-->
                 {% for acteur in acteurs %}
                     <div class='flexrow' style='justify-content:  center;'>
-                        <div class="smallBox" style='background-image: url("http://www.virabuz.com/wp-content/uploads/2016/06/Emilia-Clarke-Hair.jpg");background-size: cover;background-repeat: no-repeat;background-position-x: 50%;'>
+                        <div class="smallBox" style='background-image: url("{{acteur.url}}");background-size: cover;background-repeat: no-repeat;background-position-x: 50%;'>
                             <a href="{{ path('acteur_show', { 'id': acteur.id }) }}">
                                 <div class="BoxFrame" style=" height: 300px;">
                                     <div class="BoxTitle flexrow" style="text-shadow: 2px 2px black;justify-content:  flex-end;">
