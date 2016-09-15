@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Serie list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Pays</th>
+                <th>Anneedebut</th>
+                <th>Status</th>
+                <th>Note</th>
+                <th>Synopsis</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for serie in series %}
+            <tr>
+                <td><a href="{{ path('serie_show', { 'id': serie.id }) }}">{{ serie.id }}</a></td>
+                <td>{{ serie.titre }}</td>
+                <td>{{ serie.pays }}</td>
+                <td>{{ serie.anneeDebut }}</td>
+                <td>{{ serie.status }}</td>
+                <td>{{ serie.note }}</td>
+                <td>{{ serie.synopsis }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('serie_show', { 'id': serie.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('serie_edit', { 'id': serie.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('serie_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
