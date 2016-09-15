@@ -19,18 +19,16 @@ class UtilisateurType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('mail')
-            ->add('dateNaissance', 'datetime')
+            ->add('dateNaissance', 'date')
             ->add('ville')
             ->add('twitter')
             ->add('facebook')
             ->add('avatar')
             ->add('signature')
             ->add('description')
-            ->add('abonnements')
-            ->add('episodesVisionnes')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */
