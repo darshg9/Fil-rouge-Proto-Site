@@ -59,6 +59,10 @@ class Acteur
      */
     private $auteurProposition;
 
+    private $url;
+
+    private $valide = false;
+
     /**
      * Get id
      *
@@ -183,7 +187,37 @@ class Acteur
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
+        $auteurProposition->addPropositionsActeurs($this);
         return $this;
+
+    }
+
+    public function getUrl() {
+
+        return $this->url;
+
+    }
+
+    public function setUrl($url) {
+
+        $this->url = $url;
+        return $this;
+
+    }
+
+    public function getValide() {
+
+        return $this->valide;
+
+    }
+
+    public function setValide() {
+
+        if(!$this->valide) {
+
+            $this->valide = true;
+
+        }
 
     }
 

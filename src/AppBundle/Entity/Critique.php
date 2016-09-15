@@ -141,6 +141,7 @@ class Critique
     public function setSerie($serie) {
 
         $this->serie = $serie;
+        $serie->addCritique($this);
         return $this;
 
     }
@@ -154,6 +155,7 @@ class Critique
     public function setAuteur($auteur) {
 
         $this->auteur = $auteur;
+        $auteur->addCritique($this);
         return $this;
 
     }

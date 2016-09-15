@@ -64,6 +64,8 @@ class Episode
      */
     private $viewers;
 
+    private $valide;
+
 
     /**
      * Get id
@@ -170,6 +172,7 @@ class Episode
     public function setSaison($saison) {
 
         $this->saison = $saison;
+        $saison->addEpisode($this);
         return $this;
 
     }
@@ -183,6 +186,7 @@ class Episode
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
+        $auteurProposition->addPropositionsEpisodes($this);
         return $this;
 
     }
@@ -193,9 +197,10 @@ class Episode
 
     }
 
-    public function addViewers($viewers) {
+    public function addViewer($viewer) {
 
-        $this->viewers[] = $viewers;
+        $this->viewers[] = $viewer;
+        $viewer->addEpisodesVisionnes($this);
         return $this;
 
     }
@@ -203,6 +208,22 @@ class Episode
     public function getViewers() {
 
         return $this->viewers;
+
+    }
+
+    public function getValide() {
+
+        return $this->valide;
+
+    }
+
+    public function setValide() {
+
+        if(!$this->valide) {
+
+            $this->valide = true;
+
+        }
 
     }
 

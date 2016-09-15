@@ -80,6 +80,7 @@ class Saison
     public function setSerie($serie) {
 
         $this->serie = $serie;
+        $serie->addSaison($this);
         return $this;
 
     }
@@ -90,7 +91,7 @@ class Saison
 
     }
 
-    public function addEpisodes($episodes) {
+    public function addEpisode($episodes) {
 
         $this->episodes[] = $episodes;
         return $this;
