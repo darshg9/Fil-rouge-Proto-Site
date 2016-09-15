@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Critique list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Contenu</th>
+                <th>Datecritique</th>
+                <th>Note</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for critique in critiques %}
+            <tr>
+                <td><a href="{{ path('critique_show', { 'id': critique.id }) }}">{{ critique.id }}</a></td>
+                <td>{{ critique.contenu }}</td>
+                <td>{% if critique.dateCritique %}{{ critique.dateCritique|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ critique.note }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('critique_show', { 'id': critique.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('critique_edit', { 'id': critique.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('critique_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
