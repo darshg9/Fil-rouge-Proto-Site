@@ -93,6 +93,8 @@ class Serie
      */
     private $auteurProposition;
 
+    private $url;
+
     /**
      * Get id
      *
@@ -244,6 +246,7 @@ class Serie
     public function addAbonne($abonne) {
 
         $this->abonnes[] = $abonne;
+        $abonne->addAbonnements($this);
         return $this;
 
     }
@@ -276,6 +279,7 @@ class Serie
     public function setRealisateur($realisateur) {
 
         $this->realisateur = $realisateur;
+        $realisateur->addSeries($this);
         return $this;
 
     }
@@ -315,6 +319,20 @@ class Serie
     public function setAuteurProposition($auteur) {
 
         $this->auteurProposition = $auteur;
+        $auteurProposition->addPropositionsSeries($this);
+        return $this;
+
+    }
+
+    public function getUrl() {
+
+        return $this->url;
+
+    }
+
+    public function setUrl($url) {
+
+        $this->url = $url;
         return $this;
 
     }

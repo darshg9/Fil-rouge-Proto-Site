@@ -59,6 +59,8 @@ class Acteur
      */
     private $auteurProposition;
 
+    private $url;
+
     /**
      * Get id
      *
@@ -183,6 +185,20 @@ class Acteur
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
+        $auteurProposition->addPropositionsActeurs($this);
+        return $this;
+
+    }
+
+    public function getUrl() {
+
+        return $this->url;
+
+    }
+
+    public function setUrl($url) {
+
+        $this->url = $url;
         return $this;
 
     }

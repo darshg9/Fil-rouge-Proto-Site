@@ -170,6 +170,7 @@ class Episode
     public function setSaison($saison) {
 
         $this->saison = $saison;
+        $saison->addEpisode($this);
         return $this;
 
     }
@@ -183,6 +184,7 @@ class Episode
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
+        $auteurProposition->addPropositionsEpisodes($this);
         return $this;
 
     }
@@ -193,9 +195,10 @@ class Episode
 
     }
 
-    public function addViewers($viewers) {
+    public function addViewer($viewer) {
 
-        $this->viewers[] = $viewers;
+        $this->viewers[] = $viewer;
+        $viewer->addEpisodesVisionnes($this);
         return $this;
 
     }

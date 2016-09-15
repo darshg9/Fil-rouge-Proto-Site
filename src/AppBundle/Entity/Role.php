@@ -80,6 +80,7 @@ class Role
     public function setActeur($acteur) {
 
         $his->acteur = $acteur;
+        $acteur->addRole($this);
         return $this;
 
     }
@@ -93,6 +94,7 @@ class Role
     public function setSerie($serie) {
 
         $his->serie = $serie;
+        $serie->addRole($this);
         return $this;
 
     }
