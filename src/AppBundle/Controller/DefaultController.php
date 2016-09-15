@@ -18,9 +18,11 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $series = $em->getRepository('AppBundle:Serie')->findAll();
-
+        // To do Catch series with low rating
+        $seriesLowRating = $em->getRepository('AppBundle:Serie')->findAll();
         return $this->render('index.html.twig', array(
                     'series' => $series,
+                    'seriesLowRating' => $seriesLowRating
         ));
     }
 
