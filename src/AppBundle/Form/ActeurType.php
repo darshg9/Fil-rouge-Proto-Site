@@ -21,7 +21,6 @@ class ActeurType extends AbstractType
                 ->add('nationalite')
                 ->add('dateNaissance', 'datetime')
                 ->add('auteurProposition')
-
         ;
     }
 
