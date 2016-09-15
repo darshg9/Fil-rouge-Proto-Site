@@ -36,6 +36,13 @@ class Acteur
     private $prenom;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="nomComplet", type="string", length=255)
+     */
+    private $nomComplet = $this->nom." ".$this->prenom;
+
+    /**
      * @ORM\OneToMany(targetEntity="Role", mappedBy="acteur")
      */
     private $roles;
@@ -87,6 +94,7 @@ class Acteur
     public function setNom($nom)
     {
         $this->nom = $nom;
+        $this->nomComplet = $this->nom." ".$this->prenom;
 
         return $this;
     }
@@ -110,6 +118,7 @@ class Acteur
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
+        $this->nomComplet = $this->nom." ".$this->prenom;
 
         return $this;
     }

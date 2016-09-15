@@ -21,7 +21,7 @@ class SerieType extends AbstractType
             ->add('anneeDebut')
             ->add('status')
             ->add('synopsis')
-            ->add('realisateur', EntityType::class, ["class" => "AppBundle:Realisateur", "choice_label" => "Réalisateur"])
+            ->add('realisateur', EntityType::class, ["class" => "AppBundle:Realisateur", "choice_label" => "nom"])
             ->add('roles', RoleType::class, ["label" => "Acteurs et rôles associés"])
         ;
     }
