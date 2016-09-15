@@ -230,7 +230,7 @@ class Acteur
 
     public function getNomComplet(){
 
-        $nomComplet = $this->nom." ".$this->prenom;
+        $nomComplet = $this->prenom." ".$this->nom;
         return $nomComplet;
 
     }

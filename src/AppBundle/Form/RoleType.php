@@ -18,7 +18,7 @@ class RoleType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('acteur', EntityType::class, ["class" => "AppBundle:Acteur", "choice_label" => function($acteur) {return $category->getNomComplet()}])
+            ->add('acteur', EntityType::class, ["class" => "AppBundle:Acteur", "choice_label" => function($acteur) {return $acteur->getNomComplet();}])
         ;
     }
 
