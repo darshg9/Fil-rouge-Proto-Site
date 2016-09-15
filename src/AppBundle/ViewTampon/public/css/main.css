@@ -1,0 +1,238 @@
+/*******************|GENERAL|********************/
+*
+{
+    font-family: 'Muli', sans-serif;
+
+}
+
+li{
+    padding:0px;
+    margin:0px;
+}
+input
+{
+    border : 1px solid black;
+}
+img
+{
+    height : auto;
+    width : 100%;
+}
+.list-group-item
+{
+    margin:0px;
+    padding:5px;
+}
+a
+{
+    color:inherit;
+}
+a:hover
+{
+    text-decoration: none;
+    color:inherit;
+}
+.fh
+{
+    height : 100%;
+}
+.container-fluid
+{
+    padding:0px;
+    margin:0px;
+}
+.row, div
+{
+    margin:0px;
+}
+p
+{
+    margin:0px;
+
+}
+h1
+{
+    padding:5px;
+}
+h1, h2, h3, h4
+{
+    margin:0px;
+}
+
+.aButton
+{
+    color: white;
+}
+section
+{
+    background-color: #edf5ff;
+    padding: 5px;
+    z-index: 1;
+}
+body
+{
+
+}
+.Box
+{
+    padding:5px;
+    color: white;
+    box-shadow: 3px 3px 2px 2px #323232;
+    margin-top:10px;
+    height: 500px;
+}
+
+.BoxFrame
+{
+    padding: 5px;
+    max-height : 100%;
+    box-shadow: 0px 0px 10px 0px black;
+
+}
+
+.BoxInfoText
+{
+    padding:20px;
+    height : 100%;
+    box-shadow: 0px 0px 10px 0px black;
+}
+
+.BoxInfo
+{
+    padding: 4px;
+    justify-content:  space-around;
+}
+
+.BoxTitle
+{
+    text-shadow: 2px 2px black;
+
+}
+
+.btn
+{
+    padding:2px;
+    border-radius: 0px;
+}
+.btn-lg
+{
+    border-radius:0px;
+}
+.BoxFrameBtn
+{
+    padding: 10px;
+    box-shadow: 1px 1px 3px 0px black ;
+}
+.BoxFrameBtn:hover
+{
+    box-shadow: 1px 1px 4px 0px black inset;
+}
+.BoxFrameBtn:hover >p
+{
+    position:relative;
+    top:1px;
+    left:1px
+}
+
+
+.smallBox
+{
+    width :250px;
+    color: white;
+    box-shadow: 3px 3px 2px 2px #323232;
+    margin-top:10px;
+    padding: 5px;
+    margin:10px 10px 10px 0px;
+    flex-grow: 0;
+
+}
+
+.footer
+{
+    height : 50px;
+    display : flex;
+    flex-direction: row;
+    justify-content:  center;
+    background-color: white;
+
+}
+ul
+{
+    list-style-type: none ;
+}
+
+li
+{
+    display : inline-block;
+    padding:10px;
+}
+
+.flexrow
+{
+    display : flex;
+    flex-flow : row wrap;
+}
+.flexcol
+{
+    display : flex;
+    flex-flow: column wrap ;
+}
+
+overflow
+{
+}
+
+/*Extra small devices (phones, up to 480px)*/
+@media screen and (max-width: 767px) {
+    *
+    {
+        font-size: 1em;
+    }
+    .Box
+    {
+        height : 250px;
+    }
+    .BoxInfo
+    {
+        display:none;
+    }
+    .smallBox
+    {
+        flex-grow: 1;
+
+    }
+}
+/*Small devices (tablets, 768px and up)
+@media (min-width: 768px) and (max-width: 991px) {
+}
+tablets/desktops and up -----------
+@media (min-width: 992px) and (max-width: 1199px) {
+}
+large desktops and up -----------
+@media screen and (min-width: 1200px) {
+}*/
+/*
+*******************|Layout2|********************/
+
+.Aside
+{
+    background-color: rgba(255,255,255,0.4);
+    border-left: 1px solid rgba(0,0,0,0.1);
+    padding:20px;
+}
+
+.Rating
+{
+    padding : 25px;
+}
+.detailDescription
+{
+    margin-top : 10px;
+}
+
+.glyphicon-star, .glyphicon-star-empty{
+    font-size: 40px;
+    color: gold;
+
+
+}
