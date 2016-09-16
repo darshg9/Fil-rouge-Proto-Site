@@ -17,7 +17,7 @@ class ActeurRepository extends EntityRepository
     {
         return $this->getEntityManager()
                         ->createQuery(
-                                'SELECT r FROM AppBundle:Role WHERE r.serie.id =:id'
+                                'SELECT r FROM AppBundle:Role r WHERE r.serie.id =:id'
                         )->setParameter('id', $id)
                         ->getResult();
     }
