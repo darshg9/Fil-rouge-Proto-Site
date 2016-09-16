@@ -7,16 +7,28 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
+/**
+ * Wall controller.
+ *
+ * @Route("/wall")
+ */
 class WallController extends Controller
 {
 
     /**
-     * @Route("/wall", name="wall")
-     * @Method("GET")
+     * @Route("/{id}", name="wall_show")
+     *       requirements={
+     *          "id": "\d+"
+     *      })
      */
-    public function indexAction()
+    public function showAction($id)
     {
+
         $em = $this->getDoctrine()->getManager();
+        $utilisateur = $em->getRepository("AppBundle:Utilisateur")->getInfo($em, $id);
+
+        return $this->render('Wall/wall.html.twig', ["utilisateur" => $utilisateur]);
+
     }
 
 }

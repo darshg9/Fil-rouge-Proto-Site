@@ -20,6 +20,22 @@
                         <!--/////////////////********|information|********\\\\\\\\\\\\\\\\\!-->
                         <div id="information" class="tab-pane fade in active">
                             <p>Theses informations will be generate with the autoform symfony</p>
+                            <ul>
+                                {% for info in utilisateur %}
+                                    <li>Pseudo: {{info.pseudo}}</li>
+                                    <li>Nom: {{info.nom}}</li>
+                                    <li>Prénom: {{info.prenom}}</li>
+                                    <li>Mail: {{info.mail}}</li>
+                                    <li>Date de naissance: {{info.dateNaissance | date("d/m/Y")}}</li>
+                                    <li>Ville: {{info.ville}}</li>
+                                    <li>Twitter: {{info.twitter}}</li>
+                                    <li>Facebook: {{info.facebook}}</li>
+                                    <li>Avatar: {{info.avatar}}</li>
+                                    <li>Signature: {{info.signature}}</li>
+                                    <li>Description: {{info.description}}</li>
+                                {% endfor %}
+
+                            </ul>
                         </div>
                         <!--/////////////////********|activite|********\\\\\\\\\\\\\\\\\!-->
                         <div id="activite" class="tab-pane fade">
@@ -187,4 +203,3 @@
 </section>
 
 {% endblock %}
-
