@@ -16,9 +16,7 @@ class ActeurRepository extends EntityRepository
     public function findSeries($id)
     {
         return $this->getEntityManager()
-                        ->createQuery(
-                                'SELECT r,s FROM AppBundle:Role r JOIN r.serie s WHERE r.acteur.id = :id'
-                        )->setParameter('id', $id)
+                        ->createQuery('SELECT s FROM AppBundle:Serie s JOIN s.roles r WHERE r.acteur = :id')->setParameter('id', $id)
                         ->getResult();
     }
 

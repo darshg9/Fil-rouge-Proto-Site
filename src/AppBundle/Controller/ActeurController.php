@@ -69,9 +69,9 @@ class ActeurController extends Controller
     public function showAction(Acteur $acteur)
     {
         $deleteForm = $this->createDeleteForm($acteur);
-        $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur . id);
-        var_dump($series_acteur);
-        die();
+        $em = $this->getDoctrine()->getManager();
+
+        $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur->getId());
         return $this->render('acteur/show.html.twig', array(
                     'acteur' => $acteur,
                     'series' => $series_acteur,
