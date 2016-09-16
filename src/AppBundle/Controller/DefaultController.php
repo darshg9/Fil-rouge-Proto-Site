@@ -22,7 +22,7 @@ class DefaultController extends Controller
         $seriesLowRating = $em->getRepository('AppBundle:Serie')->findAll();
         return $this->render('index.html.twig', array(
                     'series' => $series,
-                    'seriesLowRating' => $seriesLowRating
+                    'seriesLowRating' => $seriesLowRating,
         ));
     }
 

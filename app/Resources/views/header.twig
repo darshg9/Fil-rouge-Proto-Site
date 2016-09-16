@@ -38,7 +38,7 @@
             <div class="collapse navbar-collapse" id="MainBar"  >
                 <ul class="nav navbar-nav">
                     <li><a href="{{path('home')}}">Accueil</a></li>
-                    <li><a href="{{path('wall_show', {"id": 1})}}">Mon Wall</a></li>
+                    {% if app.user %}<li><a href=" {{path('wall_show', {"id": app.user.id}) }}">Mon Wall</a></li>{% endif %}
                     <li><a href="{{path('serie_index')}}">Séries</a></li>
                     <li><a href="{{path('acteur_index')}}">Acteurs</a></li>
                     <li><a href="#">Forum</a></li>
