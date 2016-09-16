@@ -13,22 +13,20 @@
             </div>
             <div class="collapse navbar-collapse" id="LoginBar" style="margin:0px">
                 <ul class="nav navbar-nav navbar-right">
-                    <form action="index.php" method="get" class="form-horizontal" role="form" style="margin:0px;">
-                        <input type="text" name="name" placeholder="Identifiant">
-                        <input type="text" name="name" placeholder="Mot de Passe">
-                        <button class="btn btn-success" type="submit">
-                            <div class="BoxFrameBtn" >
-                                <p>
-                                    Se Connecter
-                                </p>
-                            </div>
-                        </button>
-                    </form>
-                    <a href="login.php" class="aButton" >
-                        <div class="btn btn-info"style="width : 100%;" >
+                    <a href="{{path('fos_user_registration_register')}}" class="aButton" >
+                        <div class="btn btn-success">
                             <div class="BoxFrameBtn">
                                 <p>
                                     Créer un compte
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="{{path('fos_user_security_login')}}" class="aButton" >
+                        <div class="btn btn-info">
+                            <div class="BoxFrameBtn">
+                                <p>
+                                    S'enregistrer
                                 </p>
                             </div>
                         </div>
