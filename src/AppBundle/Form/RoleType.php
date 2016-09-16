@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 class RoleType extends AbstractType
 {
@@ -17,7 +18,7 @@ class RoleType extends AbstractType
     {
         $builder
             ->add('nom')
-            ->add('acteur', EntityType::class, ["class" => "AppBundle:Acteur", "choice_label" => "nomComplet"])
+            ->add('acteur', EntityType::class, ["class" => "AppBundle:Acteur", "choice_label" => function($acteur) {return $acteur->getNomComplet();}])
         ;
     }
 
