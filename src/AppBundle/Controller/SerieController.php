@@ -16,6 +16,7 @@ use AppBundle\Form\SerieType;
  */
 class SerieController extends Controller
 {
+
     /**
      * Lists all Serie entities.
      *
@@ -29,7 +30,7 @@ class SerieController extends Controller
         $series = $em->getRepository('AppBundle:Serie')->findAll();
 
         return $this->render('serie/index.html.twig', array(
-            'series' => $series,
+                    'series' => $series,
         ));
     }
 
@@ -45,7 +46,8 @@ class SerieController extends Controller
         $form = $this->createForm('AppBundle\Form\SerieType', $serie);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->flush();
@@ -54,8 +56,8 @@ class SerieController extends Controller
         }
 
         return $this->render('serie/new.html.twig', array(
-            'serie' => $serie,
-            'form' => $form->createView(),
+                    'serie' => $serie,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -67,11 +69,13 @@ class SerieController extends Controller
      */
     public function showAction(Serie $serie)
     {
+        $em = $this->getDoctrine()->getManager();
+        $acteurs_serie = $em->getRepository("AppBundle:Serie")->findActeurs($serie->getId());
         $deleteForm = $this->createDeleteForm($serie);
-
         return $this->render('serie/show.html.twig', array(
-            'serie' => $serie,
-            'delete_form' => $deleteForm->createView(),
+                    'serie' => $serie,
+                    'acteurs_serie' => $acteurs_serie,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -87,7 +91,8 @@ class SerieController extends Controller
         $editForm = $this->createForm('AppBundle\Form\SerieType', $serie);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->flush();
@@ -96,9 +101,9 @@ class SerieController extends Controller
         }
 
         return $this->render('serie/edit.html.twig', array(
-            'serie' => $serie,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'serie' => $serie,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -113,7 +118,8 @@ class SerieController extends Controller
         $form = $this->createDeleteForm($serie);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->remove($serie);
             $em->flush();
@@ -132,9 +138,10 @@ class SerieController extends Controller
     private function createDeleteForm(Serie $serie)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('serie_delete', array('id' => $serie->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('serie_delete', array('id' => $serie->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
