@@ -20,8 +20,8 @@
                         <!--/////////////////********|information|********\\\\\\\\\\\\\\\\\!-->
                         <div id="information" class="tab-pane fade in active">
                             {% for info in utilisateur %}
-                            <h3>Informations de {{info.pseudo}}</h3>
-                            <ul>
+                                <h3>Informations de {{info.pseudo}}</h3>
+                                <ul>
                                     <li>Nom: {{info.nom}}</li><br />
                                     <li>Prénom: {{info.prenom}}</li><br />
                                     <li>Mail: {{info.mail}}</li><br />
@@ -32,7 +32,7 @@
                                     <li>Avatar: <img src="{{info.avatar}}" /></li><br />
                                     <li>Signature: {{info.signature}}</li><br />
                                     <li>Description: {{info.description}}</li>
-                            </ul>
+                                </ul>
                             {% endfor %}
                         </div>
                         <!--/////////////////********|activite|********\\\\\\\\\\\\\\\\\!-->

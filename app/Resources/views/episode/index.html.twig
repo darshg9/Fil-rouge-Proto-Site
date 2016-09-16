@@ -15,25 +15,25 @@
             </tr>
         </thead>
         <tbody>
-        {% for episode in episodes %}
-            <tr>
-                <td><a href="{{ path('episode_show', { 'id': episode.id }) }}">{{ episode.id }}</a></td>
-                <td>{{ episode.titre }}</td>
-                <td>{% if episode.duree %}{{ episode.duree|date('H:i:s') }}{% endif %}</td>
-                <td>{{ episode.resume }}</td>
-                <td>{% if episode.diffusionsFutures %}{{ episode.diffusionsFutures|join(', ') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('episode_show', { 'id': episode.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('episode_edit', { 'id': episode.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for episode in episodes %}
+                <tr>
+                    <td><a href="{{ path('episode_show', { 'id': episode.id }) }}">{{ episode.id }}</a></td>
+                    <td>{{ episode.titre }}</td>
+                    <td>{% if episode.duree %}{{ episode.duree|date('H:i:s') }}{% endif %}</td>
+                    <td>{{ episode.resume }}</td>
+                    <td>{% if episode.diffusionsFutures %}{{ episode.diffusionsFutures|join(', ') }}{% endif %}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('episode_show', { 'id': episode.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('episode_edit', { 'id': episode.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
