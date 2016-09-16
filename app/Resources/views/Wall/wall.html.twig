@@ -19,23 +19,21 @@
                     <div class="tab-content" style="padding:10px">
                         <!--/////////////////********|information|********\\\\\\\\\\\\\\\\\!-->
                         <div id="information" class="tab-pane fade in active">
-                            <p>Theses informations will be generate with the autoform symfony</p>
+                            {% for info in utilisateur %}
+                            <h3>Informations de {{info.pseudo}}</h3>
                             <ul>
-                                {% for info in utilisateur %}
-                                    <li>Pseudo: {{info.pseudo}}</li>
-                                    <li>Nom: {{info.nom}}</li>
-                                    <li>Prénom: {{info.prenom}}</li>
-                                    <li>Mail: {{info.mail}}</li>
-                                    <li>Date de naissance: {{info.dateNaissance | date("d/m/Y")}}</li>
-                                    <li>Ville: {{info.ville}}</li>
-                                    <li>Twitter: {{info.twitter}}</li>
-                                    <li>Facebook: {{info.facebook}}</li>
-                                    <li>Avatar: {{info.avatar}}</li>
-                                    <li>Signature: {{info.signature}}</li>
+                                    <li>Nom: {{info.nom}}</li><br />
+                                    <li>Prénom: {{info.prenom}}</li><br />
+                                    <li>Mail: {{info.mail}}</li><br />
+                                    <li>Date de naissance: {{info.dateNaissance | date("d/m/Y")}}</li><br />
+                                    <li>Ville: {{info.ville}}</li><br />
+                                    <li>Twitter: {{info.twitter}}</li><br />
+                                    <li>Facebook: {{info.facebook}}</li><br />
+                                    <li>Avatar: <img src="{{info.avatar}}" /></li><br />
+                                    <li>Signature: {{info.signature}}</li><br />
                                     <li>Description: {{info.description}}</li>
-                                {% endfor %}
-
                             </ul>
+                            {% endfor %}
                         </div>
                         <!--/////////////////********|activite|********\\\\\\\\\\\\\\\\\!-->
                         <div id="activite" class="tab-pane fade">

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Utilisateur
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="utilisateur")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
  */
-class Utilisateur
+class Utilisateur extends BaseUser
 {
     /**
      * @var int
@@ -19,114 +20,120 @@ class Utilisateur
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Pseudo", type="string", length=255, unique=true)
      */
-    private $pseudo;
+    protected $pseudo;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Nom", type="string", length=255, nullable=true)
      */
-    private $nom;
+    protected $nom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Prenom", type="string", length=255, nullable=true)
      */
-    private $prenom;
+    protected $prenom;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Mail", type="string", length=255)
      */
-    private $mail;
+    protected $mail;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="Date_naissance", type="datetime", nullable=true)
      */
-    private $dateNaissance;
+    protected $dateNaissance;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Ville", type="string", length=255, nullable=true)
      */
-    private $ville;
+    protected $ville;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Twitter", type="string", length=255, nullable=true)
      */
-    private $twitter;
+    protected $twitter;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Facebook", type="string", length=255, nullable=true)
      */
-    private $facebook;
+    protected $facebook;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Avatar", type="string", length=255, nullable=true)
      */
-    private $avatar;
+    protected $avatar;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Signature", type="string", length=255, nullable=true)
      */
-    private $signature;
+    protected $signature;
 
     /**
      * @var string
      *
      * @ORM\Column(name="Description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @ORM\OneToMany(targetEntity="Acteur", mappedBy="auteurProposition")
      */
-    private $propositionsActeurs;
+    protected $propositionsActeurs;
 
     /**
      * @ORM\OneToMany(targetEntity="Episode", mappedBy="auteurProposition")
      */
-    private $propositionsEpisodes;
+    protected $propositionsEpisodes;
 
     /**
      * @ORM\OneToMany(targetEntity="Serie", mappedBy="auteurProposition")
      */
-    private $propositionsSeries;
+    protected $propositionsSeries;
 
     /**
      * @ORM\OneToMany(targetEntity="Critique", mappedBy="auteur")
      */
-    private $critiques;
+    protected $critiques;
 
     /**
      * @ORM\ManyToMany(targetEntity="Serie", inversedBy="abonnes")
      */
-    private $abonnements;
+    protected $abonnements;
 
     /**
      * @ORM\ManyToMany(targetEntity="Episode", inversedBy="viewers")
      */
-    private $episodesVisionnes;
+    protected $episodesVisionnes;
+
+    public function __construct() {
+
+        parent::__construct();
+
+    }
 
     /**
      * Get id
