@@ -16,6 +16,7 @@ use AppBundle\Form\ActeurType;
  */
 class ActeurController extends Controller
 {
+
     /**
      * Lists all Acteur entities.
      *
@@ -27,9 +28,8 @@ class ActeurController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $acteurs = $em->getRepository('AppBundle:Acteur')->findAll();
-
         return $this->render('acteur/index.html.twig', array(
-            'acteurs' => $acteurs,
+                    'acteurs' => $acteurs,
         ));
     }
 
@@ -45,7 +45,8 @@ class ActeurController extends Controller
         $form = $this->createForm('AppBundle\Form\ActeurType', $acteur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($acteur);
             $em->flush();
@@ -54,8 +55,8 @@ class ActeurController extends Controller
         }
 
         return $this->render('acteur/new.html.twig', array(
-            'acteur' => $acteur,
-            'form' => $form->createView(),
+                    'acteur' => $acteur,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -68,10 +69,13 @@ class ActeurController extends Controller
     public function showAction(Acteur $acteur)
     {
         $deleteForm = $this->createDeleteForm($acteur);
-
+        $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur . id);
+        var_dump($series_acteur);
+        die();
         return $this->render('acteur/show.html.twig', array(
-            'acteur' => $acteur,
-            'delete_form' => $deleteForm->createView(),
+                    'acteur' => $acteur,
+                    'series' => $series_acteur,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -87,7 +91,8 @@ class ActeurController extends Controller
         $editForm = $this->createForm('AppBundle\Form\ActeurType', $acteur);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($acteur);
             $em->flush();
@@ -96,9 +101,9 @@ class ActeurController extends Controller
         }
 
         return $this->render('acteur/edit.html.twig', array(
-            'acteur' => $acteur,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'acteur' => $acteur,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -113,7 +118,8 @@ class ActeurController extends Controller
         $form = $this->createDeleteForm($acteur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->remove($acteur);
             $em->flush();
@@ -132,9 +138,10 @@ class ActeurController extends Controller
     private function createDeleteForm(Acteur $acteur)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('acteur_delete', array('id' => $acteur->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('acteur_delete', array('id' => $acteur->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
