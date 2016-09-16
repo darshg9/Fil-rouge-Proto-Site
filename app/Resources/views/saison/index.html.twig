@@ -12,22 +12,22 @@
             </tr>
         </thead>
         <tbody>
-        {% for saison in saisons %}
-            <tr>
-                <td><a href="{{ path('saison_show', { 'id': saison.id }) }}">{{ saison.id }}</a></td>
-                <td>{{ saison.denomination }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('saison_show', { 'id': saison.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('saison_edit', { 'id': saison.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
+            {% for saison in saisons %}
+                <tr>
+                    <td><a href="{{ path('saison_show', { 'id': saison.id }) }}">{{ saison.id }}</a></td>
+                    <td>{{ saison.denomination }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('saison_show', { 'id': saison.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('saison_edit', { 'id': saison.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
