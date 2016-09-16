@@ -18,7 +18,7 @@ class RealisateurType extends AbstractType
             ->add('nom')
         ;
     }
-    
+
     /**
      * @param OptionsResolver $resolver
      */

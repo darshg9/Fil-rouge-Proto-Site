@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UtilisateurType extends AbstractType
 {
@@ -19,7 +20,7 @@ class UtilisateurType extends AbstractType
             ->add('nom')
             ->add('prenom')
             ->add('mail')
-            ->add('dateNaissance', 'date')
+            ->add('dateNaissance', BirthdayType::class, ["widget" => "choice", "format" => "ddMMyyyy"])
             ->add('ville')
             ->add('twitter')
             ->add('facebook')

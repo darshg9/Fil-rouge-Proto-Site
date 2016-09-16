@@ -17,8 +17,8 @@ class RoleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
             ->add('acteur', EntityType::class, ["class" => "AppBundle:Acteur", "choice_label" => function($acteur) {return $acteur->getNomComplet();}])
+            ->add('nom')
         ;
     }
 
