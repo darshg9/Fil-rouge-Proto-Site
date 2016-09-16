@@ -3,12 +3,12 @@
 
     <section>
         {% for serie in series %}
-            <div class="flexrow container-fluid Box " style='background-image: url("{{url}}");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
+            <div class="flexrow container-fluid Box " style='background-image: url("{{serie.url}}");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
                 <!--<div class="BoxFrame fh">-->
                 <div class="BackColor">
 
                     <div class="BoxTitle col-sm-6" >
-                        <h1 style="font-size : 50px">{{ titre }}</h1>
+                        <h1 style="font-size : 50px">{{ serie.titre }}</h1>
                         {#<h3 style="padding-left:15px">Vivamus a varius augue. Donec non venenatis lectus. Mauris at porta felis.</h3>#}
                     </div>
 
@@ -18,7 +18,7 @@
                             <div class="BoxInfoText flexcol">
                                 {#<h4>Le Retour des dragons</h4>#}
                                 <p style="align-self: center">
-                                    {{ synopsis }}
+                                    {{ serie.synopsis }}
                                 </p>
                             </div>
                         </div>
