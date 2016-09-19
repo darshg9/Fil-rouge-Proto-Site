@@ -64,6 +64,11 @@ class Episode
      */
     private $viewers;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valide", type="boolean", nullable=false)
+     */
     private $valide;
 
 

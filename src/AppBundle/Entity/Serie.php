@@ -100,6 +100,11 @@ class Serie
      */
     private $url;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valide", type="boolean", nullable=false)
+     */
     private $valide;
 
     /**

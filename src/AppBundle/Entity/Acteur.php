@@ -66,7 +66,12 @@ class Acteur
      */
     private $url;
 
-    private $valide = false;
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="valide", type="boolean", nullable=false)
+     */
+    private $valide;
 
     /**
      * Get id

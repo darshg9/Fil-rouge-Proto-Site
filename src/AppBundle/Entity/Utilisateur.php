@@ -125,6 +125,11 @@ class Utilisateur extends BaseUser
     protected $abonnements;
 
     /**
+     * @ORM\Column(name="activite", type="array", nullable=true)
+     */
+    protected $activite;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Episode", inversedBy="viewers")
      */
     protected $episodesVisionnes;
@@ -473,6 +478,22 @@ class Utilisateur extends BaseUser
 
         $this->critiques[] = $critique;
         return $this;
+
+    }
+
+    public function getActivite() {
+
+        return $this->activite;
+
+    }
+
+    public function addActivite($activite) {
+
+        for ($ii = 18; $ii >= 0 ; $ii--) {
+
+            //$this->activite[]
+
+        }
 
     }
 
