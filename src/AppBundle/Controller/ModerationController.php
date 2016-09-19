@@ -17,13 +17,20 @@ class ModerationController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $series_valide = $em->getRepository('AppBundle:Serie')->findSeriesActive();
-//        $acteurs_valide = $em->getRepository('AppBundle:Acteur')->findActeursActive();
-//        $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
-
+        $series_not_valide = $em->getRepository('AppBundle:Serie')->findSeriesNotActive();
+        $acteurs_not_valide = $em->getRepository('AppBundle:Acteur')->findActeursNotActive();
+        $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
+        $utilisateurs_ban = $em->getRepository('AppBundle:Utilisateur')->findUtilisateurBan();
+        $utilisateurs_role = $em->getRepository('AppBundle:Utilisateur')->findUtilisateurRole('ROLE');
+        $critiques_signale = $em->getRepository('AppBundle:Critique')->findCritiqueSignale();
 
         return $this->render('moderation/index.html.twig', array(
-                    'series' => $series_valide,
+                    'series' => $series_not_valide,
+                    'acteurs' => $acteurs_not_valide,
+                    'utilisateur' => $utilisateurs,
+                    'utilisateur_ban' => $utilisateurs_ban,
+                    'utilisateur_role' => $utilisateurs_role,
+                    'critiques_signale' => $critiques_signale,
         ));
     }
 

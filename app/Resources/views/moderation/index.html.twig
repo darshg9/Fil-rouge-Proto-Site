@@ -19,150 +19,54 @@
                     <div class="tab-content" style="padding:10px">
                         <!--/////////////////********|serie|********\\\\\\\\\\\\\\\\\!-->
                         <div id="serie" class="tab-pane fade in active">
-                            <div class="BoxFrame" style="margin:5px;">
-                                <a href="episodeDetail.php">
-                                    <div class="row">
-                                        <div class="col-sm-4"
-                                             style='height : 160px;
-                                             background-image: url("http://1.bp.blogspot.com/-PhfyECtnhG8/UyDjIDsrfbI/AAAAAAAACEg/0ybZKzXz6BA/s1600/daenerys+targaryen,+a+game+of+thrones,+dragon+169643.jpg");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
-                                        </div>
-                                        <div class="col-sm-8">
+                            {% for serie in series %}
+                                <div class="BoxFrame" style="margin:5px;">
+                                    <a href="{{path('serie_show',{'id':serie.id})}}">
+                                        <div class="row">
+                                            <div class="col-sm-4"
+                                                 style='height : 160px;
+                                                 background-image: url("{{ serie.url}}");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
+                                            </div>
                                             <div class="col-sm-8">
-                                                <h3>Game of thrones</h3>
-                                                <div class="flexrow">
-                                                    <p>Proposée par :</p>
-                                                    <p>Jacouille</p>
+                                                <div class="col-sm-8">
+                                                    <h3>{{ serie.titre }}</h3>
+                                                    <div class="flexrow">
+                                                        <p>Proposée par :</p>
+                                                        <p>{{ serie.auteurProposition }}</p>
+                                                    </div>
+                                                    <div class="flexrow">
+                                                        <p>Proposée le :</p>
+                                                        <p>date</p>
+                                                    </div>
                                                 </div>
-                                                <div class="flexrow">
-                                                    <p>Proposée le :</p>
-                                                    <p>date</p>
+                                                <div class="col-sm-4 flexcol" style='align-items:  center;'>
+                                                    <a href="{{path('serie_show',{'id':serie.id})}}">
+                                                        <div class="btn btn-info" >
+                                                            <div class="BoxFrameBtn " >
+                                                                <p>Consulter</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a href="#">
+                                                        <div class="btn btn-success">
+                                                            <div class="BoxFrameBtn " >
+                                                                <p>Valider</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a href="#">
+                                                        <div class="btn btn-danger" >
+                                                            <div class="BoxFrameBtn " >
+                                                                <p>Refuser</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-4 flexcol" style='align-items:  center;'>
-                                                <a href="#">
-                                                    <div class="btn btn-info" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Consulter</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="btn btn-primary">
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Visiter</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="btn btn-danger" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Refuser</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            </div>
-
-                            <div class="BoxFrame" style="margin:5px;">
-                                <a href="episodeDetail.php">
-
-                                    <div class="row">
-                                        <div class="col-sm-4"
-                                             style='height : 160px;
-                                             background-image: url("http://lubiie.fr/wp-content/uploads/2015/02/vikings-saison-3.jpg");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="col-sm-8">
-                                                <h3>Vikings</h3>
-                                                <div class="flexrow">
-                                                    <p>Proposée par :</p>
-                                                    <p>Jacouille</p>
-                                                </div>
-                                                <div class="flexrow">
-                                                    <p>Proposée le :</p>
-                                                    <p>date</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4 flexcol" style='align-items:  center;'>
-                                                <a href="#">
-                                                    <div class="btn btn-info" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Consulter</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="btn btn-primary">
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Visiter</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="btn btn-danger" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Refuser</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div>
-
-                            <div class="BoxFrame" style="margin:5px;">
-                                <a href="episodeDetail.php">
-
-                                    <div class="row">
-                                        <div class="col-sm-4"
-                                             style='height : 160px;
-                                             background-image: url("https://pmctvline2.files.wordpress.com/2016/06/mr-robot-season-2-after-show.jpg?w=620");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
-                                        </div>
-                                        <div class="col-sm-8">
-                                            <div class="col-sm-8">
-                                                <h3>Mr Robot</h3>
-                                                <div class="flexrow">
-                                                    <p>Proposée par :</p>
-                                                    <p>Jacouille</p>
-                                                </div>
-                                                <div class="flexrow">
-                                                    <p>Proposée le :</p>
-                                                    <p>date</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4 flexcol" style='align-items:  center;'>
-                                                <a href="#">
-                                                    <div class="btn btn-info" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Consulter</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="btn btn-primary">
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Visiter</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                                <a href="#">
-                                                    <div class="btn btn-danger" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Refuser</p>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                            </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
                         </div>
                         <!--/////////////////********|acteur|********\\\\\\\\\\\\\\\\\!-->
                         <div id="acteur" class="tab-pane fade">

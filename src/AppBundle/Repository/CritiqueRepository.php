@@ -13,17 +13,22 @@ use Doctrine\ORM\EntityRepository;
 class CritiqueRepository extends EntityRepository
 {
 
-    public function getCritiquesByUser($em, $id) {
+    public function getCritiquesByUser($em, $id)
+    {
 
         $query = $em->createQuery("SELECT c "
-                    ."FROM AppBundle:Critique c "
-                    ."WHERE c.id = :id")
-                    ->setParameter("id", $id);
+                        ."FROM AppBundle:Critique c "
+                        ."WHERE c.id = :id")
+                ->setParameter("id", $id);
 
         $critiques = $query->getResult();
 
         return $critiques;
+    }
 
+    public function findCritiqueSignale()
+    {
+        return $this->getEntityManager()->createQuery('SELECT c FROM AppBundle:Critique c WHERE c.signale = true');
     }
 
 }

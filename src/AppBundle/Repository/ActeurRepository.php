@@ -34,7 +34,7 @@ class ActeurRepository extends EntityRepository
                         ->getResult();
     }
 
-    public function findActeursActive()
+    public function findActeursNotActive()
     {
         return $this->getEntityManager()
                         ->createQuery('SELECT a FROM AppBundle:Acteur a WHERE a.valide = false')

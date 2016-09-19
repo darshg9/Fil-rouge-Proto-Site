@@ -26,4 +26,16 @@ class UtilisateurRepository extends EntityRepository
         return $utilisateur;
     }
 
+    public function findUtilisateurBan()
+    {
+        return $this->getEntityManager()->createQuery('SELECT u FROM AppBundle:Utilisateur u WHERE u.enabled = false')
+                        ->getResult();
+    }
+
+    public function findUtilisateurRole($role)
+    {
+        return $this->getEntityManager()->createQuery(
+                        'SELECT u FROM AppBundle:Utilisateur u WHERE u.roles LIKE :role')->setParameter('role', '%"'.$role.'"%')->getResult();
+    }
+
 }
