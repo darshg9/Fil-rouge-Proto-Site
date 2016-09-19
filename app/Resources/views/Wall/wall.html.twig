@@ -40,55 +40,55 @@
                             {% for info in utilisateur %}
                                 {% for article in info.activite %}
                                     {% if article %}
-                                    {% if article.type == "abonnement" %}
-                                        <div class="BoxFrame" style="margin:5px;">
-                                            <div class="row flexrow" style="min-height: 80px;
-                                                 align-items:  center; ">
-                                                <div class="col-sm-3">
-                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <p>Suit la série : <a href="{{path('serie_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% elseif article.type == "critique" %}
-                                        <div class="BoxFrame" style="margin:5px;">
-                                            <div class="row flexrow" style="min-height: 80px;
-                                                 align-items:  center; ">
-                                                <div class="col-sm-3">
-                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <p>A commenté la série : <a href="{{path('serie_show', {"id": article.cible.serie.id}) }}">{{article.cible.serie.titre}}</a></p>
+                                        {% if article.type == "abonnement" %}
+                                            <div class="BoxFrame" style="margin:5px;">
+                                                <div class="row flexrow" style="min-height: 80px;
+                                                     align-items:  center; ">
+                                                    <div class="col-sm-3">
+                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <p>Suit la série : <a href="{{path('serie_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a></p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    {% elseif article.type == "serie" %}
-                                        <div class="BoxFrame" style="margin:5px;">
-                                            <div class="row flexrow" style="min-height: 80px;
-                                                 align-items:  center; ">
-                                                <div class="col-sm-3">
-                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <p>A proposé la série : <a href="{{path('serie_show', {"id": article.cible.id}) }}">{{article.cible.titre}}</a></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    {% elseif article.type == "acteur" %}
-                                        <div class="BoxFrame" style="margin:5px;">
-                                            <div class="row flexrow" style="min-height: 80px;
-                                                 align-items:  center; ">
-                                                <div class="col-sm-3">
-                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                </div>
-                                                <div class="col-sm-9">
-                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                        {% elseif article.type == "critique" %}
+                                            <div class="BoxFrame" style="margin:5px;">
+                                                <div class="row flexrow" style="min-height: 80px;
+                                                     align-items:  center; ">
+                                                    <div class="col-sm-3">
+                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <p>A commenté la série : <a href="{{path('serie_show', {"id": article.cible.serie.id}) }}">{{article.cible.serie.titre}}</a></p>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    {% endif %}
+                                        {% elseif article.type == "serie" and article.cible.valide %}
+                                            <div class="BoxFrame" style="margin:5px;">
+                                                <div class="row flexrow" style="min-height: 80px;
+                                                     align-items:  center; ">
+                                                    <div class="col-sm-3">
+                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <p>A proposé la série : <a href="{{path('serie_show', {"id": article.cible.id}) }}">{{article.cible.titre}}</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% elseif article.type == "acteur" and article.cible.valide %}
+                                            <div class="BoxFrame" style="margin:5px;">
+                                                <div class="row flexrow" style="min-height: 80px;
+                                                     align-items:  center; ">
+                                                    <div class="col-sm-3">
+                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
                             {% endfor %}
@@ -104,7 +104,7 @@
                                             <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
                                             {% for critique in critiques %}
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">{{critique.dateCritique | date("d/m/Y - H:i")}}</div>
+                                                <div class="panel-heading">Le {{critique.dateCritique | date("d/m/Y à H:i")}}, à propos de <a href="{{path('acteur_show', {"id": critique.serie.id})}}">{{critique.serie.titre}}</a></div>
                                                 <div class="panel-body">
                                                     <div class="row">
                                                         <div class="col-sm-2">

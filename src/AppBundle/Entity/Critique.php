@@ -53,6 +53,13 @@ class Critique
      */
     private $note;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="Signale", type="boolean")
+     */
+    private $signale;
+
     public function __construct() {
 
         $this->dateCritique = new DateTime();
@@ -163,6 +170,19 @@ class Critique
 
         $this->auteur = $auteur;
         $auteur->addCritique($this)->addActivite(["type" => "critique", "cible" => $this]);
+        return $this;
+
+    }
+
+    public function getSignale() {
+
+        return $this->signale;
+
+    }
+
+    public function setSignale($signale) {
+
+        $this->signale = $signale;
         return $this;
 
     }

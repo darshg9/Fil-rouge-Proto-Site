@@ -53,7 +53,7 @@ class CritiqueController extends Controller
             $auteur = $this->getUser();
             $em = $this->getDoctrine()->getManager();
             $serie = $em->getRepository("AppBundle:Serie")->find($id);
-            $critique->setAuteur($auteur)->setSerie($serie);
+            $critique->setAuteur($auteur)->setSerie($serie)->setSignale(false);
             $em->persist($critique);
             $em->persist($auteur);
             $em->persist($serie);
