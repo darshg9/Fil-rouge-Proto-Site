@@ -406,7 +406,7 @@ class Utilisateur extends BaseUser
 
     public function addPropositionsActeurs($propositionsActeurs) {
 
-        $this->propositionsActeurs = $propositionsActeurs;
+        $this->propositionsActeurs = $propositionsActeurs->getId();
         return $this;
 
     }

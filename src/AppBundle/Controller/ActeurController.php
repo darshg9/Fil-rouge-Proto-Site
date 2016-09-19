@@ -52,6 +52,7 @@ class ActeurController extends Controller
             $acteur->setAuteurProposition($auteurId);
             $em = $this->getDoctrine()->getManager();
             $em->persist($acteur);
+            $em->persist($auteur);
             $em->flush();
 
             return $this->redirectToRoute('acteur_show', array('id' => $acteur->getId()));
