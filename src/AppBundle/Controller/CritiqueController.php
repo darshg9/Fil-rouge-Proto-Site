@@ -47,10 +47,11 @@ class CritiqueController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $auteurId = $this->getUser()->getId();
-            $critique->setAuteur($auteurId);
+            $auteur = $this->getUser();
+            $critique->setAuteur($auteur->getId());
             $em = $this->getDoctrine()->getManager();
             $em->persist($critique);
+            $em->persist($auteur);
             $em->flush();
 
             return $this->redirectToRoute('critique_show', array('id' => $critique->getId()));
