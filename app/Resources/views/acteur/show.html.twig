@@ -37,7 +37,7 @@
                                     <tbody>
                                         <tr>
                                             <td>Date de naissance :</td>
-                                            <td>{% if acteur.dateNaissance %}{{ acteur.dateNaissance|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                            <td>{% if acteur.dateNaissance %}{{ acteur.dateNaissance| date("d/m/Y") }}{% endif %}</td>
                                         </tr>
                                         <tr>
                                             <td>Nationalité :</td>
