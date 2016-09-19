@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
 
 /**
  * Critique
@@ -52,6 +53,12 @@ class Critique
      */
     private $note;
 
+    public function __construct() {
+
+        $this->dateCritique = new DateTime();
+        $this->note = 2.5;
+
+    }
 
     /**
      * Get id

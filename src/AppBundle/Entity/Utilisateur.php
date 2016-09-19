@@ -469,9 +469,9 @@ class Utilisateur extends BaseUser
 
     }
 
-    public function addCritiques($critiques) {
+    public function addCritique($critique) {
 
-        $this->critiques[] = $critiques;
+        $this->critiques[] = $critique;
         return $this;
 
     }

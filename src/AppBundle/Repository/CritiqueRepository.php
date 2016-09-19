@@ -16,13 +16,13 @@ class CritiqueRepository extends EntityRepository
     public function getCritiquesByUser($em, $id) {
 
         $query = $em->createQuery("SELECT c "
-                    ."FROM AppBundle:Critiques c "
+                    ."FROM AppBundle:Critique c "
                     ."WHERE c.id = :id")
                     ->setParameter("id", $id);
 
         $critiques = $query->getResult();
 
-        return $utilisateur;
+        return $critiques;
 
     }
 

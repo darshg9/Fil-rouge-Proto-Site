@@ -80,8 +80,9 @@
                                     <div class="panel-body">
                                         <div class="panel-group">
                                             <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
+                                            {% for critique in critiques %}
                                             <div class="panel panel-default">
-                                                <div class="panel-heading">Date : 26/03/2016</div>
+                                                <div class="panel-heading">{{critique.dateCritique | date("d/m/Y - H:i")}}</div>
                                                 <div class="panel-body">
                                                     <div class="row">
                                                         <div class="col-sm-2">
@@ -103,17 +104,15 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
                                                             </div>
                                                             <p style="padding:10px">
-                                                                Vivamus a varius augue. Donec non venenatis lectus. Mauris at porta felis. Quisque ac
-                                                                ultricies risus. Vestibulum non nibh sit amet massa luctus scelerisque. Nam ac efficitur
+                                                                {{critique.contenu}}
                                                             </p>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
+                                            {% endfor %}
                                         </div>
                                     </div>
                                 </div>
