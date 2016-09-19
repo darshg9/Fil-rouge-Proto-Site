@@ -50,7 +50,7 @@ class SerieController extends Controller
         {
 
             $auteur = $this->getUser();
-            $serie->setAuteurProposition($auteur->getId());
+            $serie->setAuteurProposition($auteur);
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->persist($auteur);

@@ -326,7 +326,7 @@ class Serie
     public function setAuteurProposition($auteur) {
 
         $this->auteurProposition = $auteur;
-        $auteurProposition->addPropositionsSeries($this);
+        $auteur->addPropositionsSeries($this);
         return $this;
 
     }
