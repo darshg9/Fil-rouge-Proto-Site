@@ -49,7 +49,7 @@ class ActeurController extends Controller
         {
 
             $auteurId = $this->getUser()->getId();
-            $acteur->setAuteur($auteurId);
+            $acteur->setAuteurProposition($auteurId);
             $em = $this->getDoctrine()->getManager();
             $em->persist($acteur);
             $em->flush();
@@ -75,11 +75,16 @@ class ActeurController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur->getId());
-        $popularSerie = $em->getRepository('AppBundle:Acteur')->popularSerie($id);
+        $popularSerie = $em->getRepository('AppBundle:Acteur')->popularSerie($acteur->getId());
+        foreach ($popularSerie as $s)
+        {
+            $acteurCollaboration = $em->getRepository('AppBundle:Acteur')->collaborationActeur($s->getId());
+        }
         return $this->render('acteur/show.html.twig', array(
                     'acteur' => $acteur,
                     'series' => $series_acteur,
-                    'popularSerie' => $seriepopular,
+                    'popularSerie' => $popularSerie,
+                    'acteurCollaboration' => $acteurCollaboration,
                     'delete_form' => $deleteForm->createView(),
         ));
     }

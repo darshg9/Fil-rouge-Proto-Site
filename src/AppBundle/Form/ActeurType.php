@@ -21,6 +21,7 @@ class ActeurType extends AbstractType
                 ->add('prenom')
                 ->add('nationalite')
                 ->add('dateNaissance', BirthdayType::class, ["widget" => "choice", "format" => "ddMMyyyy"])
+
         ;
     }
 

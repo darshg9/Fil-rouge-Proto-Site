@@ -13,4 +13,11 @@ use Doctrine\ORM\EntityRepository;
 class SerieRepository extends EntityRepository
 {
 
+    public function findActeurs($id)
+    {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT a FROM AppBundle:Acteur s JOIN s.roles r WHERE r.serie = :id')->setParameter('id', $id)
+                        ->getResult();
+    }
+
 }
