@@ -46,6 +46,9 @@ class CritiqueController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $auteurId = $this->getUser()->getId();
+            $critique->setAuteur($auteurId);
             $em = $this->getDoctrine()->getManager();
             $em->persist($critique);
             $em->flush();
