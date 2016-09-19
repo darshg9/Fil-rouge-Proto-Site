@@ -36,7 +36,10 @@ class SaisonController extends Controller
     /**
      * Creates a new Saison entity.
      *
-     * @Route("/new", name="saison_new")
+     * @Route("/new/{id}", name="saison_new",
+     *       requirements={
+     *          "id": "\d+"
+     *      })
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)

@@ -16,7 +16,7 @@ class WallController extends Controller
 {
 
     /**
-     * @Route("/{id}", name="wall_show")
+     * @Route("/{id}", name="wall_show",
      *       requirements={
      *          "id": "\d+"
      *      })
@@ -26,8 +26,9 @@ class WallController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $utilisateur = $em->getRepository("AppBundle:Utilisateur")->getInfo($em, $id);
+        $critiques = $em->getRepository("AppBundle:Critique")->getCritiquesByUser($em, $id);
 
-        return $this->render('Wall/wall.html.twig', ["utilisateur" => $utilisateur]);
+        return $this->render('Wall/wall.html.twig', ["utilisateur" => $utilisateur, "critiques" => $critiques]);
 
     }
 

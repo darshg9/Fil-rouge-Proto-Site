@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class CritiqueRepository extends EntityRepository
 {
+
+    public function getCritiquesByUser($em, $id) {
+
+        $query = $em->createQuery("SELECT c "
+                    ."FROM AppBundle:Critiques c "
+                    ."WHERE c.id = :id")
+                    ->setParameter("id", $id);
+
+        $critiques = $query->getResult();
+
+        return $utilisateur;
+
+    }
+
 }

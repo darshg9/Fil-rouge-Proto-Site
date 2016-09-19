@@ -36,7 +36,10 @@ class EpisodeController extends Controller
     /**
      * Creates a new Episode entity.
      *
-     * @Route("/new", name="episode_new")
+     * @Route("/new/{id}", name="episode_new",
+     *       requirements={
+     *          "id": "\d+"
+     *      })
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
