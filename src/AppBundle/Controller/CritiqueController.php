@@ -36,10 +36,13 @@ class CritiqueController extends Controller
     /**
      * Creates a new Critique entity.
      *
-     * @Route("/new", name="critique_new")
+     * @Route("/new/{id}", name="critique_new",
+     *       requirements={
+     *          "id": "\d+"
+     *      })
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $critique = new Critique();
         $form = $this->createForm('AppBundle\Form\CritiqueType', $critique);
@@ -48,10 +51,12 @@ class CritiqueController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $auteur = $this->getUser();
-            $critique->setAuteur($auteur);
             $em = $this->getDoctrine()->getManager();
+            $serie = $em->getRepository("AppBundle:Serie")->find($id);
+            $critique->setAuteur($auteur)->setSerie($serie);
             $em->persist($critique);
             $em->persist($auteur);
+            $em->persist($serie);
             $em->flush();
 
             return $this->redirectToRoute('critique_show', array('id' => $critique->getId()));

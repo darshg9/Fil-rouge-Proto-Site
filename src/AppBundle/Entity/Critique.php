@@ -162,7 +162,7 @@ class Critique
     public function setAuteur($auteur) {
 
         $this->auteur = $auteur;
-        $auteur->addCritique($this);
+        $auteur->addCritique($this)->addActivite(["type" => "critique", "cible" => $this]);
         return $this;
 
     }

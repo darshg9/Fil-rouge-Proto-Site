@@ -191,7 +191,7 @@ class Episode
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
-        $auteurProposition->addPropositionsEpisodes($this);
+        $auteurProposition->addPropositionsEpisodes($this)->addActivite(["type" => "episode", "cible" => $this]);
         return $this;
 
     }
@@ -222,13 +222,10 @@ class Episode
 
     }
 
-    public function setValide() {
+    public function setValide($valide) {
 
-        if(!$this->valide) {
-
-            $this->valide = true;
-
-        }
+        $this->valide = $valide;
+        return $this;
 
     }
 

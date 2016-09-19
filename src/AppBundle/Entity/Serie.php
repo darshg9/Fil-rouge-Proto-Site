@@ -331,7 +331,7 @@ class Serie
     public function setAuteurProposition($auteur) {
 
         $this->auteurProposition = $auteur;
-        $auteur->addPropositionsSeries($this);
+        $auteur->addPropositionsSeries($this)->addActivite(["type" => "serie", "cible" => $this]);
         return $this;
 
     }
@@ -355,13 +355,10 @@ class Serie
 
     }
 
-    public function setValide() {
+    public function setValide($valide) {
 
-        if(!$this->valide) {
-
-            $this->valide = true;
-
-        }
+        $this->valide = $valide;
+        return $this;
 
     }
 

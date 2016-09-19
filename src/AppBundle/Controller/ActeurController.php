@@ -49,7 +49,7 @@ class ActeurController extends Controller
         {
 
             $auteur = $this->getUser();
-            $acteur->setAuteurProposition($auteur);
+            $acteur->setAuteurProposition($auteur)->setValide(false);
             $em = $this->getDoctrine()->getManager();
             $em->persist($acteur);
             $em->persist($auteur);

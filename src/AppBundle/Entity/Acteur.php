@@ -199,7 +199,7 @@ class Acteur
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
-        $auteurProposition->addPropositionsActeurs($this);
+        $auteurProposition->addPropositionsActeurs($this)->addActivite(["type" => "acteur", "cible" => $this]);
         return $this;
 
     }
@@ -223,13 +223,10 @@ class Acteur
 
     }
 
-    public function setValide() {
+    public function setValide($valide) {
 
-        if(!$this->valide) {
-
-            $this->valide = true;
-
-        }
+        $this->valide = $valide;
+        return $this;
 
     }
 

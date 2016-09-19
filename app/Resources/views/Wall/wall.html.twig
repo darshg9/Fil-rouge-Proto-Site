@@ -20,7 +20,7 @@
                         <!--/////////////////********|information|********\\\\\\\\\\\\\\\\\!-->
                         <div id="information" class="tab-pane fade in active">
                             {% for info in utilisateur %}
-                                <h3>Informations de {{info.pseudo}}</h3>
+                                <h3>Informations de {{info.username}}</h3>
                                 <ul>
                                     <li>Nom: {{info.nom}}</li><br />
                                     <li>Prénom: {{info.prenom}}</li><br />
@@ -37,39 +37,61 @@
                         </div>
                         <!--/////////////////********|activite|********\\\\\\\\\\\\\\\\\!-->
                         <div id="activite" class="tab-pane fade">
-                            <div class="BoxFrame" style="margin:5px;">
-                                <div class="row flexrow" style="min-height: 80px;
-                                     align-items:  center; ">
-                                    <div class="col-sm-3">
-                                        <p style>Date et Heure</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>Suit la série : <a href="#">Titre de la série</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="BoxFrame" style="margin:5px;">
-                                <div class="row flexrow" style="min-height: 80px;
-                                     align-items:  center; ">
-                                    <div class="col-sm-3">
-                                        <p style>Date et Heure</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>A commenté la série : <a href="#">Titre de la série</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="BoxFrame" style="margin:5px;">
-                                <div class="row flexrow" style="min-height: 80px;
-                                     align-items:  center; ">
-                                    <div class="col-sm-3">
-                                        <p style>Date et Heure</p>
-                                    </div>
-                                    <div class="col-sm-9">
-                                        <p>A proposé l'acteur : <a href="#">Titre de la série</a></p>
-                                    </div>
-                                </div>
-                            </div>
+                            {% for info in utilisateur %}
+                                {% for article in info.activite %}
+                                    {% if article %}
+                                    {% if article.type == "abonnement" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>Suit la série : <a href="{{path('serie_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% elseif article.type == "critique" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A commenté la série : <a href="{{path('serie_show', {"id": article.cible.serie.id}) }}">{{article.cible.serie.titre}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% elseif article.type == "serie" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A proposé la série : <a href="{{path('serie_show', {"id": article.cible.id}) }}">{{article.cible.titre}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% elseif article.type == "acteur" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
                         </div>
                         <!--/////////////////********|commentaire|********\\\\\\\\\\\\\\\\\!-->
                         <div id="commentaire" class="tab-pane fade">

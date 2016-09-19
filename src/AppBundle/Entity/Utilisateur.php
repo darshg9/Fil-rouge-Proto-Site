@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use \DateTime;
 
 /**
  * Utilisateur
@@ -25,13 +26,6 @@ class Utilisateur extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="Pseudo", type="string", length=255, unique=true)
-     */
-    protected $pseudo;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="Nom", type="string", length=255, nullable=true)
      */
     protected $nom;
@@ -46,7 +40,7 @@ class Utilisateur extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="Mail", type="string", length=255)
+     * @ORM\Column(name="Mail", type="string", length=255, nullable=true)
      */
     protected $mail;
 
@@ -137,6 +131,9 @@ class Utilisateur extends BaseUser
     public function __construct() {
 
         parent::__construct();
+        for ($ii=0; $ii < 20 ; $ii++) {
+            $this->activite[] = [];
+        }
 
     }
 
@@ -148,29 +145,6 @@ class Utilisateur extends BaseUser
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set pseudo
-     *
-     * @param string $pseudo
-     * @return Utilisateur
-     */
-    public function setPseudo($pseudo)
-    {
-        $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    /**
-     * Get pseudo
-     *
-     * @return string
-     */
-    public function getPseudo()
-    {
-        return $this->pseudo;
     }
 
     /**
@@ -491,9 +465,11 @@ class Utilisateur extends BaseUser
 
         for ($ii = 18; $ii >= 0 ; $ii--) {
 
-            //$this->activite[]
+            $this->activite[$ii+1] = $this->activite[$ii];
 
         }
+        $activite["date"] = new DateTime();
+        $this->activite[0] = $activite;
 
     }
 
