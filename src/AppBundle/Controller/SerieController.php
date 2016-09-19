@@ -48,7 +48,7 @@ class SerieController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $auteur = $this->getUser();
-            $serie->setAuteurProposition($auteur->getId());
+            $serie->setAuteurProposition($auteur);
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
             $em->persist($auteur);
