@@ -23,10 +23,12 @@
                             <div class="flexcol" style="align-items:  center;
                                  ">
                                 <div class="Star flexrow" style="flex-wrap: nowrap">
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
+
+                                    {% set counter = 0 %}
+                                    {% for counter in serie.note %}
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    {% endfor %}
+
                                     <span class="glyphicon glyphicon-star-empty"></span>
                                 </div>
                                 <h3>{{ serie.note }}</h3>
@@ -43,7 +45,6 @@
                                 <div class="btn btn-info" >
                                     <div class="BoxFrameBtn " >
                                         <p>S'abonner à la Série</p>
-                                        <p><a href="{{ path('serie_edit', { 'id': serie.id }) }}">Supprimé</a></p>
                                     </div>
                                 </div>
                                 <div class="btn btn-warning" >
@@ -75,8 +76,8 @@
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr>
-                                                    <td>Réalisateur :</td>
-                                                    <td></td>
+                                                    <td>Réalisateur : </td>
+                                                    <td>{{ serie.realisateur.nom }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Pays :</td>
@@ -108,24 +109,11 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tbody>
-                                                <tr>
-                                                    <td>Nom Prénom</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nom Prénom</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nom Prénom</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nom Prénom</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nom Prénom</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nom Prénom</td>
-                                                </tr>
+                                                {% for acteur in acteurs_serie %}
+                                                    <tr>
+                                                        <td>{{ acteur.nom }} {{ acteur.prenom }}</td>
+                                                    </tr>
+                                                {% endfor %}
                                             </tbody>
                                         </table>
                                     </div>

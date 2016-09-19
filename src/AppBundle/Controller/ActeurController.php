@@ -75,17 +75,17 @@ class ActeurController extends Controller
         $deleteForm = $this->createDeleteForm($acteur);
         $em = $this->getDoctrine()->getManager();
         $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur->getId());
-        $popularSerie = $em->getRepository('AppBundle:Acteur')->popularSerie($acteur->getId());
-        $acteurCollaboration = null;
-        foreach ($popularSerie as $s)
+        $popular_serie = $em->getRepository('AppBundle:Acteur')->popularSerie($acteur->getId());
+        $acteur_collaboration = null;
+        foreach ($popular_serie as $s)
         {
-            $acteurCollaboration = $em->getRepository('AppBundle:Acteur')->collaborationActeur($s->getId());
+            $acteur_collaboration = $em->getRepository('AppBundle:Acteur')->collaborationActeur($s->getId());
         }
         return $this->render('acteur/show.html.twig', array(
                     'acteur' => $acteur,
                     'series' => $series_acteur,
-                    'popularSerie' => $popularSerie,
-                    'acteurCollaboration' => $acteurCollaboration,
+                    'popularSerie' => $popular_serie,
+                    'acteurCollaboration' => $acteur_collaboration,
                     'delete_form' => $deleteForm->createView(),
         ));
     }
