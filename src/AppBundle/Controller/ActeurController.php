@@ -48,8 +48,8 @@ class ActeurController extends Controller
         if ($form->isSubmitted() && $form->isValid())
         {
 
-            $auteurId = $this->getUser()->getId();
-            $acteur->setAuteurProposition($auteurId);
+            $auteur = $this->getUser();
+            $acteur->setAuteurProposition($auteur->getId());
             $em = $this->getDoctrine()->getManager();
             $em->persist($acteur);
             $em->persist($auteur);
