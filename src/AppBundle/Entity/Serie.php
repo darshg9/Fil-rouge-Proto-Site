@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Serie
 {
+
     /**
      * @var int
      *
@@ -36,9 +37,9 @@ class Serie
     private $pays;
 
     /**
-     * @var int
+     * @var \DateTime
      *
-     * @ORM\Column(name="Annee_debut", type="integer", nullable=true)
+     * @ORM\Column(name="Annee_debut", type="datetime", nullable=true)
      */
     private $anneeDebut;
 
@@ -255,111 +256,111 @@ class Serie
         return $this->synopsis;
     }
 
-    public function addAbonne($abonne) {
+    public function addAbonne($abonne)
+    {
 
         $this->abonnes[] = $abonne;
         $abonne->addAbonnements($this);
         return $this;
-
     }
 
-    public function getAbonnes() {
+    public function getAbonnes()
+    {
 
         return $this->abonnes;
-
     }
 
-    public function getRoles() {
+    public function getRoles()
+    {
 
         return $this->roles;
-
     }
 
-    public function addRole($role) {
+    public function addRole($role)
+    {
 
         $this->roles[] = $role;
         return $this;
-
     }
 
-    public function getRealisateur() {
+    public function getRealisateur()
+    {
 
         return $this->realisateur;
-
     }
 
-    public function setRealisateur($realisateur) {
+    public function setRealisateur($realisateur)
+    {
 
         $this->realisateur = $realisateur;
         $realisateur->addSeries($this);
         return $this;
-
     }
 
-    public function getSaisons() {
+    public function getSaisons()
+    {
 
         return $this->saisons;
-
     }
 
-    public function addSaison($saison) {
+    public function addSaison($saison)
+    {
 
         $this->saisons[] = $saison;
         return $this;
-
     }
 
-    public function getCritiques() {
+    public function getCritiques()
+    {
 
         return $this->critiques;
-
     }
 
-    public function addCritique($critique) {
+    public function addCritique($critique)
+    {
 
         $this->critiques[] = $critique;
         return $this;
-
     }
 
-    public function getAuteurProposition() {
+    public function getAuteurProposition()
+    {
 
         return $this->auteurProposition;
-
     }
 
-    public function setAuteurProposition($auteur) {
+    public function setAuteurProposition($auteur)
+    {
 
         $this->auteurProposition = $auteur;
         $auteur->addPropositionsSeries($this)->addActivite(["type" => "serie", "cible" => $this]);
         return $this;
-
     }
 
-    public function getUrl() {
+    public function getUrl()
+    {
 
         return $this->url;
-
     }
 
-    public function setUrl($url) {
+    public function setUrl($url)
+    {
 
         $this->url = $url;
         return $this;
-
     }
 
-    public function getValide() {
+    public function getValide()
+    {
 
         return $this->valide;
-
     }
 
-    public function setValide($valide) {
+    public function setValide($valide)
+    {
 
         $this->valide = $valide;
         return $this;
-
     }
 
 }

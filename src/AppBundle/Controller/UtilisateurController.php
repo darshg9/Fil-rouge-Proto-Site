@@ -2,12 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Serie;
+use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Utilisateur;
-use AppBundle\Form\UtilisateurType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Utilisateur controller.
@@ -16,6 +16,7 @@ use AppBundle\Form\UtilisateurType;
  */
 class UtilisateurController extends Controller
 {
+
     /**
      * Lists all Utilisateur entities.
      *
@@ -29,7 +30,7 @@ class UtilisateurController extends Controller
         $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
 
         return $this->render('utilisateur/index.html.twig', array(
-            'utilisateurs' => $utilisateurs,
+                    'utilisateurs' => $utilisateurs,
         ));
     }
 
@@ -45,7 +46,8 @@ class UtilisateurController extends Controller
         $form = $this->createForm('AppBundle\Form\UtilisateurType', $utilisateur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($utilisateur);
             $em->flush();
@@ -54,8 +56,8 @@ class UtilisateurController extends Controller
         }
 
         return $this->render('utilisateur/new.html.twig', array(
-            'utilisateur' => $utilisateur,
-            'form' => $form->createView(),
+                    'utilisateur' => $utilisateur,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -70,8 +72,8 @@ class UtilisateurController extends Controller
         $deleteForm = $this->createDeleteForm($utilisateur);
 
         return $this->render('utilisateur/show.html.twig', array(
-            'utilisateur' => $utilisateur,
-            'delete_form' => $deleteForm->createView(),
+                    'utilisateur' => $utilisateur,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -87,7 +89,8 @@ class UtilisateurController extends Controller
         $editForm = $this->createForm('AppBundle\Form\UtilisateurType', $utilisateur);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($utilisateur);
             $em->flush();
@@ -96,9 +99,9 @@ class UtilisateurController extends Controller
         }
 
         return $this->render('utilisateur/edit.html.twig', array(
-            'utilisateur' => $utilisateur,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'utilisateur' => $utilisateur,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -113,7 +116,8 @@ class UtilisateurController extends Controller
         $form = $this->createDeleteForm($utilisateur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->remove($utilisateur);
             $em->flush();
@@ -132,9 +136,20 @@ class UtilisateurController extends Controller
     private function createDeleteForm(Utilisateur $utilisateur)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('utilisateur_delete', array('id' => $utilisateur->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('utilisateur_delete', array('id' => $utilisateur->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
+    /**
+     * @Route("/abonnement/{id}", name="abonnement")
+     * @Method("GET")
+     */
+    public function Abonnement(Serie $serie)
+    {
+        $serie->addAbonne($this->getUser());
+        return $this->redirectToRoute('serie_show', ['id' => $serie->getId()]);
+    }
+
 }

@@ -14,6 +14,7 @@ use \DateTime;
  */
 class Utilisateur extends BaseUser
 {
+
     /**
      * @var int
      *
@@ -128,13 +129,14 @@ class Utilisateur extends BaseUser
      */
     protected $episodesVisionnes;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         parent::__construct();
-        for ($ii=0; $ii < 20 ; $ii++) {
+        for ($ii = 0; $ii < 20; $ii++)
+        {
             $this->activite[] = [];
         }
-
     }
 
     /**
@@ -377,100 +379,99 @@ class Utilisateur extends BaseUser
         return $this->description;
     }
 
-    public function getPropositionsActeurs() {
+    public function getPropositionsActeurs()
+    {
 
         return $this->propositionsActeurs;
-
     }
 
-    public function addPropositionsActeurs($propositionsActeurs) {
+    public function addPropositionsActeurs($propositionsActeurs)
+    {
 
         $this->propositionsActeurs = $propositionsActeurs->getId();
         return $this;
-
     }
 
-    public function getPropositionsEpisodes() {
+    public function getPropositionsEpisodes()
+    {
 
         return $this->propositionsEpisodes;
-
     }
 
-    public function addPropositionsEpisodes($propositionsEpisodes) {
+    public function addPropositionsEpisodes($propositionsEpisodes)
+    {
 
         $this->propositionsEpisodes[] = $propositionsEpisodes;
         return $this;
-
     }
 
-    public function getPropositionsSeries() {
+    public function getPropositionsSeries()
+    {
 
         return $this->propositionsSeries;
-
     }
 
-    public function addPropositionsSeries($propositionsSeries) {
+    public function addPropositionsSeries($propositionsSeries)
+    {
 
         $this->propositionsSeries[] = $propositionsSeries;
         return $this;
-
     }
 
-    public function getAbonnements() {
+    public function getAbonnements()
+    {
 
         return $this->abonnements;
-
     }
 
-    public function addAbonnements($abonnements) {
-
+    public function addAbonnements($abonnements)
+    {
         $this->abonnements[] = $abonnements;
         return $this;
-
     }
 
-    public function getEpisodesVisionnes() {
+    public function getEpisodesVisionnes()
+    {
 
         return $this->episodesVisionnes;
-
     }
 
-    public function addEpisodesVisionnes($episodesVisionnes) {
+    public function addEpisodesVisionnes($episodesVisionnes)
+    {
 
         $this->episodesVisionnes[] = $episodesVisionnes;
         return $this;
-
     }
 
-    public function getCritiques() {
+    public function getCritiques()
+    {
 
         return $this->critiques;
-
     }
 
-    public function addCritique($critique) {
+    public function addCritique($critique)
+    {
 
         $this->critiques[] = $critique;
         return $this;
-
     }
 
-    public function getActivite() {
+    public function getActivite()
+    {
 
         return $this->activite;
-
     }
 
-    public function addActivite($activite) {
+    public function addActivite($activite)
+    {
 
-        for ($ii = 18; $ii >= 0 ; $ii--) {
-
-            $this->activite[$ii+1] = $this->activite[$ii];
-
-        }
-        $activite["date"] = new DateTime();
-        $this->activite[0] = $activite;
-
+//        for ($ii = 18; $ii >= 0 ; $ii--) {
+//
+//            $this->activite[$ii+1] = $this->activite[$ii];
+//
+//        }
+//        $activite["date"] = new DateTime();
+//        $this->activite[0] = $activite;
     }
 
 }
