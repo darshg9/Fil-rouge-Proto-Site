@@ -20,4 +20,11 @@ class SerieRepository extends EntityRepository
                         ->getResult();
     }
 
+    public function findSeriesActive()
+    {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT s FROM AppBundle:Serie s WHERE s.valide = false')
+                        ->getResult();
+    }
+
 }
