@@ -20,4 +20,18 @@ class ActeurRepository extends EntityRepository
                         ->getResult();
     }
 
+    public function collaborationActeur($id)
+    {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT a FROM AppBundle:Acteur a JOIN a.roles r WHERE r.serie = :id')->setParameter('id', $id)
+                        ->getResult();
+    }
+
+    public function popularSerie($id)
+    {
+        return $this->getEntityManager()
+                        ->createQuery('Select s FROM AppBundle:Serie WHERE s.note >4 ')
+                        ->getResult();
+    }
+
 }

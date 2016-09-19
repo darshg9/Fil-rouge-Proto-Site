@@ -13,25 +13,39 @@
             </div>
             <div class="collapse navbar-collapse" id="LoginBar" style="margin:0px">
                 <ul class="nav navbar-nav navbar-right">
-                    <a href="{{path('fos_user_registration_register')}}" class="aButton" >
-                        <div class="btn btn-success">
-                            <div class="BoxFrameBtn">
-                                <p>
-                                    Créer un compte
-                                </p>
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <p>'Bonjour, {{app.user.username}}</p>
+                        <a href="{{ path('fos_user_security_logout') }}" class="aButton" >
+                            <div class="btn btn-success">
+                                <div class="BoxFrameBtn">
+                                    {{ 'Se Loggout'|trans({}, 'FOSUserBundle') }}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="{{path('fos_user_security_login')}}" class="aButton" >
-                        <div class="btn btn-info">
-                            <div class="BoxFrameBtn">
-                                <p>
-                                    S'enregistrer
-                                </p>
+                        </a>
+                    {% else %}
+
+                        <a href="{{path('fos_user_registration_register')}}" class="aButton" >
+                            <div class="btn btn-success">
+                                <div class="BoxFrameBtn">
+                                    <p>
+                                        Créer un compte
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                </ul>
+                        </a>
+                        <a href="{{path('fos_user_security_login')}}" class="aButton" >
+                            <div class="btn btn-info">
+                                <div class="BoxFrameBtn">
+                                    <p>
+                                        S'enregistrer
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </ul>
+                {% endif %}
+
             </div>
             <div class="collapse navbar-collapse" id="MainBar"  >
                 <ul class="nav navbar-nav">

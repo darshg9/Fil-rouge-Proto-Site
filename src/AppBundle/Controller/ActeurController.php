@@ -72,9 +72,11 @@ class ActeurController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur->getId());
+        $popularSerie = $em->getRepository('AppBundle:Acteur')->popularSerie($id);
         return $this->render('acteur/show.html.twig', array(
                     'acteur' => $acteur,
                     'series' => $series_acteur,
+                    'popularSerie' => $seriepopular,
                     'delete_form' => $deleteForm->createView(),
         ));
     }
