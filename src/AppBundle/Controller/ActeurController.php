@@ -74,9 +74,9 @@ class ActeurController extends Controller
     {
         $deleteForm = $this->createDeleteForm($acteur);
         $em = $this->getDoctrine()->getManager();
-
         $series_acteur = $em->getRepository("AppBundle:Acteur")->findSeries($acteur->getId());
         $popularSerie = $em->getRepository('AppBundle:Acteur')->popularSerie($acteur->getId());
+        $acteurCollaboration = null;
         foreach ($popularSerie as $s)
         {
             $acteurCollaboration = $em->getRepository('AppBundle:Acteur')->collaborationActeur($s->getId());

@@ -55,7 +55,7 @@
                 <div class='flexrow' style='justify-content:  center;'>
                     {% for serie in series %}
 
-                        <div class="smallBox" style='background-image: url("https://pmctvline2.files.wordpress.com/2016/06/mr-robot-season-2-after-show.jpg?w=620");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
+                        <div class="smallBox" style='background-image: url("{{url}}");background-size: cover;background-repeat: no-repeat;background-position-y: 25%;'>
                             <a href="{{ path('serie_show', { 'id': serie.id }) }}">
                                 <div class="BoxFrame" style=" height: 300px;">
                                     <div class="BoxTitle flexcol" style="text-shadow: 2px 2px black;">
