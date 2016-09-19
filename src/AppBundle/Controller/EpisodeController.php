@@ -47,8 +47,8 @@ class EpisodeController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $auteur = $this->getUser()-;
-            $episode->setAuteurProposition($auteur>getId());
+            $auteur = $this->getUser();
+            $episode->setAuteurProposition($auteur->getId());
             $em = $this->getDoctrine()->getManager();
             $em->persist($episode);
             $em->persist($auteur);
