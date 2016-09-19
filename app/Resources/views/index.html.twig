@@ -23,7 +23,7 @@
                             </div>
                         </div>
                         <div style="align-self: flex-end">
-                            <a href="serieDetail.php" >
+                            <a href="{{path('serie_show',{'id':serie.id})}}" >
                                 <div class="btn btn-info" >
                                     <div class="BoxFrameBtn" >
                                         <p>En Savoir plus</p>
@@ -46,13 +46,15 @@
                             <div class="BoxTitle flexcol" style="text-shadow: 2px 2px black;">
                                 <h1 style="font-size: 60px;">Mr Robot</h1>
                                 <h3 style='margin-left: 50px;flex:50%'>Vivamus a varius augue. Donec non venenatis lectus. Mauris at porta felis.</h3>
-                                <a href="#" style="align-self: flex-end">
-                                    <div class="btn btn-info" >
-                                        <div class="BoxFrameBtn" >
-                                            <p>En Savoir plus</p>
+                                <div style="align-self: flex-end">
+                                    <a href="{{path('serie_show',{'id':serieLowRating.id})}}" >
+                                        <div class="btn btn-info" >
+                                            <div class="BoxFrameBtn" >
+                                                <p>En Savoir plus</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>

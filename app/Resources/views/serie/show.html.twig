@@ -25,11 +25,16 @@
                                 <div class="Star flexrow" style="flex-wrap: nowrap">
 
                                     {% set counter = 0 %}
-                                    {% for counter in serie.note %}
+                                    {% for i in 1..serie.note %}
                                         <span class="glyphicon glyphicon-star"></span>
                                     {% endfor %}
+                                    {% if serie.note<5 %}
+                                        {% set counter = 5-serie.note %}
+                                        {% for i in 1..counter %}
+                                            <span class="glyphicon glyphicon-star-empty"></span>
 
-                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                        {% endfor %}
+                                    {% endif %}
                                 </div>
                                 <h3>{{ serie.note }}</h3>
 
