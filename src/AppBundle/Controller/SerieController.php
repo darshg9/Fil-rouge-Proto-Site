@@ -134,6 +134,19 @@ class SerieController extends Controller
         return $this->redirectToRoute('serie_index');
     }
 
+    /////////////////********|DELETE SERIE BY THE GET METHOD AND REDITRECT TO THE MODERATION PANEL|********\\\\\\\\\\\\\\\\\
+
+    /**
+     * @Route("/delete/{id}", name="serie_delete_get")
+     */
+    public function deleteGetAction(Serie $serie)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($serie);
+        $em->flush();
+        return $this->redirectToRoute('moderation');
+    }
+
     /**
      * Creates a form to delete a Serie entity.
      *

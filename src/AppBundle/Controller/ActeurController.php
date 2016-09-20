@@ -139,6 +139,19 @@ class ActeurController extends Controller
         return $this->redirectToRoute('acteur_index');
     }
 
+    /////////////////********|DELETE ACTEUR BY THE GET METHOD AND REDITRECT TO THE MODERATION PANEL|********\\\\\\\\\\\\\\\\\
+
+    /**
+     * @Route("/delete/{id}", name="acteur_delete_get")
+     */
+    public function deleteGetAction(Acteur $acteur)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($acteur);
+        $em->flush();
+        return $this->redirectToRoute('moderation');
+    }
+
     /**
      * Creates a form to delete a Acteur entity.
      *

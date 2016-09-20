@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Acteur;
 use AppBundle\Entity\Serie;
+use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,11 +39,43 @@ class ModerationController extends Controller
     /**
      * @Route("/serie/validation/{id}", name="serie_valide")
      */
-    public function ValideSerie(Serie $serie)
+    public function valideSerieAction(Serie $serie)
     {
         $em = $this->getDoctrine()->getManager();
         $serie->setValide(true);
         $em->persist($serie);
+        $em->flush();
+        return $this->redirectToRoute('moderation');
+    }
+
+    /**
+     * @Route("/acteur/validation/{id}", name="acteur_valide")
+     */
+    public function valideActeurAction(Acteur $acteur)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $acteur->setValide(true);
+        $em->persist($acteur);
+        $em->flush();
+        return $this->redirectToRoute('moderation');
+    }
+
+    /**
+     * @Route("/bannir/{id}", name="bannir")
+     */
+    public function bannirAction(Utilisateur $utilisateur)
+    {
+        $em = $this->getDoctrine()->getManager();
+        var_dump($utilisateur->isEnabled());
+        if ($utilisateur->isEnabled())
+        {
+            $utilisateur->setEnabled(false);
+        }
+        else
+        {
+            $utilisateur->setEnabled(true);
+        }
+        $em->persist($utilisateur);
         $em->flush();
         return $this->redirectToRoute('moderation');
     }
