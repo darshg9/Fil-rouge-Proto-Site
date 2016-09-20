@@ -48,15 +48,22 @@
                             <h1>{{ serie.titre }}</h1>
                             <div>
                                 <a href="{{path('abonnement',{'id':serie.id})}}" class="aButton" >
-                                    <div class="btn btn-info">
-                                        <div class="BoxFrameBtn">
-                                            {% if serie in app.user.abonnements  %}
+
+                                    {% if serie in app.user.abonnements  %}
+                                        <div class="btn btn-primary">
+                                            <div class="BoxFrameBtn">
                                                 <p> Se Desabonné</p>
-                                            {% else %}
-                                                <p>Abonne toi</p>
-                                            {% endif %}
+                                            </div>
                                         </div>
-                                    </div>
+                                    {% else %}
+                                        <div class="btn btn-success">
+                                            <div class="BoxFrameBtn">
+                                                <p>Abonne toi</p>
+
+                                            </div>
+                                        </div>
+                                    {% endif %}
+
                                 </a>
 
                                 <div class="btn btn-warning" >
