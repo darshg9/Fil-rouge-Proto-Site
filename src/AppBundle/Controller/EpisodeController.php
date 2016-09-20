@@ -42,7 +42,7 @@ class EpisodeController extends Controller
      *      })
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $episode = new Episode();
         $form = $this->createForm('AppBundle\Form\EpisodeType', $episode);
@@ -51,8 +51,10 @@ class EpisodeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $auteur = $this->getUser();
-            $episode->setAuteurProposition($auteur)->setValide(false);
             $em = $this->getDoctrine()->getManager();
+            $saison = $em->getRepository("AppBundle:Saison")->find($id);
+            $episode->setAuteurProposition($auteur)->setSaison($saison)->setValide(false);
+            $em->persist($saison);
             $em->persist($episode);
             $em->persist($auteur);
             $em->flush();

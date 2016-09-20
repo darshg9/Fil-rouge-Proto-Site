@@ -19,8 +19,6 @@ class EpisodeType extends AbstractType
             ->add('titre')
             ->add('duree', 'time')
             ->add('resume')
-            ->add('diffusionsFutures', 'datetime')
-            ->add('saison', EntityType::class, ["class" => "AppBundle:Saison", "choice_label" => "saison"])
         ;
     }
 

@@ -85,6 +85,30 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    {% elseif article.type == "episode" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% elseif article.type == "visionnage" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% endif %}
                                 {% endif %}
                             {% endfor %}

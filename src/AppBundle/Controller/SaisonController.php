@@ -42,7 +42,7 @@ class SaisonController extends Controller
      *      })
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, $id)
     {
         $saison = new Saison();
         $form = $this->createForm('AppBundle\Form\SaisonType', $saison);
@@ -50,6 +50,8 @@ class SaisonController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $serie = $em->getRepository("AppBundle:Serie")->find($id);
+            $saison->setSerie($serie);
             $em->persist($saison);
             $em->flush();
 

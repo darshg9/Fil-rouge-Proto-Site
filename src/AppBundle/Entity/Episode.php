@@ -45,9 +45,9 @@ class Episode
     /**
      * @var array
      *
-     * @ORM\Column(name="Diffusions_futures", type="array", nullable=true)
+     * @ORM\Column(name="Diffusions", type="array", nullable=true)
      */
-    private $diffusionsFutures;
+    private $diffusions;
 
     /**
      * @ORM\ManyToOne(targetEntity="Saison", inversedBy="episodes")
@@ -151,27 +151,17 @@ class Episode
         return $this->resume;
     }
 
-    /**
-     * Set diffusionsFutures
-     *
-     * @param array $diffusionsFutures
-     * @return Episode
-     */
-    public function addDiffusionFuture($diffusionFuture)
-    {
-        $this->diffusionsFutures[] = $diffusionFuture;
+    public function addDiffusion($diffusion) {
 
+        $this->diffusions[] = $diffusion;
         return $this;
+        
     }
 
-    /**
-     * Get diffusionsFutures
-     *
-     * @return array
-     */
-    public function getDiffusionsFutures()
-    {
-        return $this->diffusionsFutures;
+    public function getDiffusions() {
+
+        return $this->diffusions;
+
     }
 
     public function setSaison($saison) {
@@ -205,7 +195,7 @@ class Episode
     public function addViewer($viewer) {
 
         $this->viewers[] = $viewer;
-        $viewer->addEpisodesVisionnes($this);
+        $viewer->addEpisodesVisionnes($this)->addActivite(["type" => "visionnage", "cible" => $this]);
         return $this;
 
     }
