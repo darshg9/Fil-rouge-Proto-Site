@@ -141,15 +141,14 @@
 
                             <div class="panel-group">
                                 {% for serie in critiquesByAbonnements %}
-                                <div class="panel-heading">{{serie.titre}}</div>
-                                    {% for critique in serie.critiques %}
-                                        <div class="panel panel-success">
-                                            <div class="panel-heading">Auteur : {{critique.auteur}}</div>
+                                    <div class="panel panel-success">
+                                        <div class="panel-heading">{{serie.titre}}</div>
                                             <div class="panel-body">
                                                 <div class="panel-group">
                                                     <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
+                                                    {% for critique in serie.critiques %}
                                                     <div class="panel panel-default">
-                                                        <div class="panel-heading">Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
+                                                        <div class="panel-heading">Critique de <a href="{{path('utilisateur_show', {"id": critique.auteur.id})}}">{{critique.auteur.username}} - Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
                                                         <div class="panel-body">
                                                             <div class="row">
                                                                 <div class="col-sm-2">
