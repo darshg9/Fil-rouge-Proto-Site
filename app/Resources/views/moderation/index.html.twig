@@ -180,7 +180,8 @@
                                 <table class="table table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Utilisateur</th>
+                                            <th>Nom du Compte</th>
+                                            <th>Nom et Prénom</th>
                                             <th>Raison du Bannissement</th>
                                             <th>Action</th>
                                         </tr>
@@ -188,7 +189,8 @@
                                     <tbody>
                                         {% for utilisateur in utilisateurs %}
                                             <tr>
-                                                <td>Nom Utilisateur : <a href="{{path('utilisateur_show',{'id':utilisateur.id})}}">{{ utilisateur.nom }} {{ utilisateur.prenom }}</a></td>
+                                                <td><a href="{{path('utilisateur_show',{'id':utilisateur.id})}}">{{ utilisateur.nom }} {{ utilisateur.prenom }}</a></td>
+                                                <td>{{ utilisateur.username }}</td>
                                                 <td>///To Do
                                                     {#                                                    {{ utilisateur.reason }}#}
                                                 </td>

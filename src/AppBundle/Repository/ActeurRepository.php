@@ -41,4 +41,11 @@ class ActeurRepository extends EntityRepository
                         ->getResult();
     }
 
+    public function findActeursActive()
+    {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT a FROM AppBundle:Acteur a WHERE a.valide = true')
+                        ->getResult();
+    }
+
 }

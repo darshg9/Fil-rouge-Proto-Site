@@ -27,7 +27,7 @@ class ActeurController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $acteurs = $em->getRepository('AppBundle:Acteur')->findAll();
+        $acteurs = $em->getRepository('AppBundle:Acteur')->findActeursActive();
         return $this->render('acteur/index.html.twig', array(
                     'acteurs' => $acteurs,
         ));
