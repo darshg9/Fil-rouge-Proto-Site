@@ -21,13 +21,10 @@
                                     </div>
                                 </div>
                                 <div class="btn btn-danger" >
-                                    <div class="BoxFrameBtn " >
-                                        <p>
-                                            {{ form_start(delete_form) }}
-                                            <input type="submit" value="Delete">
-                                            {{ form_end(delete_form) }}
-                                        </p>
-                                    </div>
+                                    {{ form_start(delete_form) }}
+                                    <input type="submit" class="BoxFrameBtn" style="background-color: inherit;border: 0px" value="Delete">
+                                    {{ form_end(delete_form) }}
+
                                 </div>
                             </div>
                         </div>

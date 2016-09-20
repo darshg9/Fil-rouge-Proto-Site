@@ -19,6 +19,7 @@ class SerieType extends AbstractType
     {
         $builder
                 ->add('titre')
+                ->add('url')
                 ->add('pays')
                 ->add('anneeDebut', DateType::class)
                 ->add('status')

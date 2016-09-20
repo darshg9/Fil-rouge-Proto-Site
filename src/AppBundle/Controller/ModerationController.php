@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Serie;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -16,7 +17,6 @@ class ModerationController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
         $series_not_valide = $em->getRepository('AppBundle:Serie')->findSeriesNotActive();
         $acteurs_not_valide = $em->getRepository('AppBundle:Acteur')->findActeursNotActive();
         $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
@@ -32,6 +32,18 @@ class ModerationController extends Controller
                     'utilisateurs_role' => $utilisateurs_role,
                     'critiques_signale' => $critiques_signale,
         ));
+    }
+
+    /**
+     * @Route("/serie/validation/{id}", name="serie_valide")
+     */
+    public function ValideSerie(Serie $serie)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $serie->setValide(true);
+        $em->persist($serie);
+        $em->flush();
+        return $this->redirectToRoute('moderation');
     }
 
 }
