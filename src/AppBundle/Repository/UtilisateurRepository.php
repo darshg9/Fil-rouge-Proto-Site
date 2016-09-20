@@ -21,7 +21,7 @@ class UtilisateurRepository extends EntityRepository
                         ."WHERE u.id = :id")
                 ->setParameter("id", $id);
 
-        $utilisateur = $query->getResult();
+        $utilisateur = $query->getSingleResult();
 
         return $utilisateur;
     }

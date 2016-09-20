@@ -19,78 +19,74 @@
                     <div class="tab-content" style="padding:10px">
                         <!--/////////////////********|information|********\\\\\\\\\\\\\\\\\!-->
                         <div id="information" class="tab-pane fade in active">
-                            {% for info in utilisateur %}
-                                <h3>Informations de {{info.username}}</h3>
-                                <ul>
-                                    <li>Nom: {{info.nom}}</li><br />
-                                    <li>Prénom: {{info.prenom}}</li><br />
-                                    <li>Mail: {{info.mail}}</li><br />
-                                    <li>Date de naissance: {{info.dateNaissance | date("d/m/Y")}}</li><br />
-                                    <li>Ville: {{info.ville}}</li><br />
-                                    <li>Twitter: {{info.twitter}}</li><br />
-                                    <li>Facebook: {{info.facebook}}</li><br />
-                                    <li>Avatar: <img src="{{info.avatar}}" /></li><br />
-                                    <li>Signature: {{info.signature}}</li><br />
-                                    <li>Description: {{info.description}}</li>
-                                </ul>
-                            {% endfor %}
+                            <h3>Informations de {{utilisateur.username}}</h3>
+                            <ul>
+                                <li>Nom: {{utilisateur.nom}}</li><br />
+                                <li>Prénom: {{utilisateur.prenom}}</li><br />
+                                <li>Mail: {{utilisateur.mail}}</li><br />
+                                <li>Date de naissance: {{utilisateur.dateNaissance | date("d/m/Y")}}</li><br />
+                                <li>Ville: {{utilisateur.ville}}</li><br />
+                                <li>Twitter: {{utilisateur.twitter}}</li><br />
+                                <li>Facebook: {{utilisateur.facebook}}</li><br />
+                                <li>Avatar: <img src="{{utilisateur.avatar}}" /></li><br />
+                                <li>Signature: {{utilisateur.signature}}</li><br />
+                                <li>Description: {{utilisateur.description}}</li>
+                            </ul>
                         </div>
                         <!--/////////////////********|activite|********\\\\\\\\\\\\\\\\\!-->
                         <div id="activite" class="tab-pane fade">
-                            {% for info in utilisateur %}
-                                {% for article in info.activite %}
-                                    {% if article %}
-                                        {% if article.type == "abonnement" %}
-                                            <div class="BoxFrame" style="margin:5px;">
-                                                <div class="row flexrow" style="min-height: 80px;
-                                                     align-items:  center; ">
-                                                    <div class="col-sm-3">
-                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <p>Suit la série : <a href="{{path('serie_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a></p>
-                                                    </div>
+                            {% for article in utilisateur.activite %}
+                                {% if article %}
+                                    {% if article.type == "abonnement" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>Suit la série : <a href="{{path('serie_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a></p>
                                                 </div>
                                             </div>
-                                        {% elseif article.type == "critique" %}
-                                            <div class="BoxFrame" style="margin:5px;">
-                                                <div class="row flexrow" style="min-height: 80px;
-                                                     align-items:  center; ">
-                                                    <div class="col-sm-3">
-                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <p>A commenté la série : <a href="{{path('serie_show', {"id": article.cible.serie.id}) }}">{{article.cible.serie.titre}}</a></p>
-                                                    </div>
+                                        </div>
+                                    {% elseif article.type == "critique" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A commenté la série : <a href="{{path('serie_show', {"id": article.cible.serie.id}) }}">{{article.cible.serie.titre}}</a></p>
                                                 </div>
                                             </div>
-                                        {% elseif article.type == "serie" and article.cible.valide %}
-                                            <div class="BoxFrame" style="margin:5px;">
-                                                <div class="row flexrow" style="min-height: 80px;
-                                                     align-items:  center; ">
-                                                    <div class="col-sm-3">
-                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <p>A proposé la série : <a href="{{path('serie_show', {"id": article.cible.id}) }}">{{article.cible.titre}}</a></p>
-                                                    </div>
+                                        </div>
+                                    {% elseif article.type == "serie" and article.cible.valide %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A proposé la série : <a href="{{path('serie_show', {"id": article.cible.id}) }}">{{article.cible.titre}}</a></p>
                                                 </div>
                                             </div>
-                                        {% elseif article.type == "acteur" and article.cible.valide %}
-                                            <div class="BoxFrame" style="margin:5px;">
-                                                <div class="row flexrow" style="min-height: 80px;
-                                                     align-items:  center; ">
-                                                    <div class="col-sm-3">
-                                                        <p style>{{article.date | date("d/m/Y - H:i")}}</p>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
-                                                    </div>
+                                        </div>
+                                    {% elseif article.type == "acteur" and article.cible.valide %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
                                                 </div>
                                             </div>
-                                        {% endif %}
+                                        </div>
                                     {% endif %}
-                                {% endfor %}
+                                {% endif %}
                             {% endfor %}
                         </div>
                         <!--/////////////////********|commentaire|********\\\\\\\\\\\\\\\\\!-->
@@ -102,7 +98,7 @@
                                     <div class="panel-body">
                                         <div class="panel-group">
                                             <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
-                                            {% for critique in critiques %}
+                                            {% for critique in critiquesByUser %}
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">Le {{critique.dateCritique | date("d/m/Y à H:i")}}, à propos de <a href="{{path('acteur_show', {"id": critique.serie.id})}}">{{critique.serie.titre}}</a></div>
                                                 <div class="panel-body">
@@ -144,48 +140,50 @@
                         <div id="commentaire2" class="tab-pane fade">
 
                             <div class="panel-group">
-                                <div class="panel panel-success">
-                                    <div class="panel-heading">Auteur : Nom Utilisateur</div>
-                                    <div class="panel-body">
-                                        <div class="panel-group">
-                                            <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">Date : 26/03/2016</div>
-                                                <div class="panel-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-2">
-                                                            <img class="img-responsive" src="http://t0.gstatic.com/images?q=tbn:ANd9GcRY1t4XoXCwsFcxJzH8u8rg1EYkwEy1MSBVScHOTLKsQFBJkXQNCNS4" style='max-width: 30vw'/>
-                                                        </div>
-                                                        <div class="col-sm-10">
-                                                            <div class="flexrow" style="justify-content:  space-between; align-items:  center;
-                                                                 ">
-                                                                <div class="flexrow" style='flex-wrap: nowrap;  align-items:  center;justify-content:  space-around;'>
-                                                                    <p style="padding:5px">Note critique : +5</p>
-                                                                    <div class="btn btn-success">
-                                                                        <div class="BoxFrameBtn " style="padding:5px">
-                                                                            <p>J'aime</p>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="btn btn-warning" >
-                                                                        <div class="BoxFrameBtn " style="padding:5px" >
-                                                                            <p>J'aime pas</p>
-                                                                        </div>
-                                                                    </div>
+                                {% for serie in critiquesByAbonnements %}
+                                <div class="panel-heading">{{serie.titre}}</div>
+                                    {% for critique in serie.critiques %}
+                                        <div class="panel panel-success">
+                                            <div class="panel-heading">Auteur : {{critique.auteur}}</div>
+                                            <div class="panel-body">
+                                                <div class="panel-group">
+                                                    <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
+                                                    <div class="panel panel-default">
+                                                        <div class="panel-heading">Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
+                                                        <div class="panel-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-2">
+                                                                    <img class="img-responsive" src="http://t0.gstatic.com/images?q=tbn:ANd9GcRY1t4XoXCwsFcxJzH8u8rg1EYkwEy1MSBVScHOTLKsQFBJkXQNCNS4" style='max-width: 30vw'/>
                                                                 </div>
+                                                                <div class="col-sm-10">
+                                                                    <div class="flexrow" style="justify-content:  space-between; align-items:  center;
+                                                                         ">
+                                                                        <div class="flexrow" style='flex-wrap: nowrap;  align-items:  center;justify-content:  space-around;'>
+                                                                            <p style="padding:5px">Note critique : +5</p>
+                                                                            <div class="btn btn-success">
+                                                                                <div class="BoxFrameBtn " style="padding:5px">
+                                                                                    <p>J'aime</p>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="btn btn-warning" >
+                                                                                <div class="BoxFrameBtn " style="padding:5px" >
+                                                                                    <p>J'aime pas</p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
 
+                                                                    </div>
+                                                                    <p style="padding:10px">{{critique.contenu}}</p>
+                                                                </div>
                                                             </div>
-                                                            <p style="padding:10px">
-                                                                Vivamus a varius augue. Donec non venenatis lectus. Mauris at porta felis. Quisque ac
-                                                                ultricies risus. Vestibulum non nibh sit amet massa luctus scelerisque. Nam ac efficitur
-                                                            </p>
+
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    {% endfor %}
+                                {% endfor %}
                             </div>
                         </div>
 

@@ -149,8 +149,10 @@ class UtilisateurController extends Controller
     public function Abonnement(Serie $serie)
     {
         $em = $this->getDoctrine()->getManager();
-        $serie->addAbonne($this->getUser());
+        $utilisateur = $this->getUser();
+        $serie->addAbonne($utilisateur);
         $em->persist($serie);
+        $em->persist($utilisateur);
         $em->flush();
         return $this->redirectToRoute('serie_show', ['id' => $serie->getId()]);
     }

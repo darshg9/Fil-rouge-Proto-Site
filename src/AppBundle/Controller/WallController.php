@@ -26,9 +26,10 @@ class WallController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $utilisateur = $em->getRepository("AppBundle:Utilisateur")->getInfo($em, $id);
-        $critiques = $em->getRepository("AppBundle:Critique")->getCritiquesByUser($em, $id);
+        $critiquesByUser = $em->getRepository("AppBundle:Critique")->getCritiquesByUser($em, $id);
+        $critiquesByAbonnements = $em->getRepository("AppBundle:Critique")->getCritiquesByAbonnements($em, $id);
 
-        return $this->render('Wall/wall.html.twig', ["utilisateur" => $utilisateur, "critiques" => $critiques]);
+        return $this->render('Wall/wall.html.twig', ["utilisateur" => $utilisateur, "critiquesByUser" => $critiquesByUser, "critiquesByAbonnements" => $critiquesByAbonnements]);
 
     }
 

@@ -18,7 +18,7 @@ class CritiqueRepository extends EntityRepository
 
         $query = $em->createQuery("SELECT c "
                         ."FROM AppBundle:Critique c "
-                        ."WHERE c.id = :id")
+                        ."WHERE c.auteur = :id")
                 ->setParameter("id", $id);
 
         $critiques = $query->getResult();
@@ -29,6 +29,34 @@ class CritiqueRepository extends EntityRepository
     public function findCritiqueSignale()
     {
         return $this->getEntityManager()->createQuery('SELECT c FROM AppBundle:Critique c WHERE c.signale = true');
+    }
+
+    public function getCritiquesByAbonnements($em, $id) {
+
+        $query = $em->createQuery("SELECT u "
+                        ."FROM AppBundle:Utilisateur u "
+                        ."WHERE u.id = :id")
+                    ->setParameter("id", $id);
+
+        $utilisateur = $query->getSingleResult();
+
+        $critiques = [];
+
+        foreach ($utilisateur->getAbonnements() as $abonnement) {
+
+            $idSerie = $abonnement->getId();
+            $query = $em->createQuery("SELECT c "
+                            ."FROM AppBundle:Critique c "
+                            ."WHERE c.serie = :id "
+                            ."ORDER BY c.dateCritique DESC")
+                        ->setParameter("id", $idSerie );
+
+            $critiques[] = ["titre" => $abonnement->getTitre(), "critiques" => $query->getResult()];
+
+        }
+
+        return $critiques;
+
     }
 
 }
