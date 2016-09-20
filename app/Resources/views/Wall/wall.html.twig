@@ -143,45 +143,43 @@
                                 {% for serie in critiquesByAbonnements %}
                                     <div class="panel panel-success">
                                         <div class="panel-heading">{{serie.titre}}</div>
-                                            <div class="panel-body">
-                                                <div class="panel-group">
-                                                    <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
-                                                    {% for critique in serie.critiques %}
-                                                    <div class="panel panel-default">
-                                                        <div class="panel-heading">Critique de <a href="{{path('utilisateur_show', {"id": critique.auteur.id})}}">{{critique.auteur.username}} - Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
-                                                        <div class="panel-body">
-                                                            <div class="row">
-                                                                <div class="col-sm-2">
-                                                                    <img class="img-responsive" src="http://t0.gstatic.com/images?q=tbn:ANd9GcRY1t4XoXCwsFcxJzH8u8rg1EYkwEy1MSBVScHOTLKsQFBJkXQNCNS4" style='max-width: 30vw'/>
-                                                                </div>
-                                                                <div class="col-sm-10">
-                                                                    <div class="flexrow" style="justify-content:  space-between; align-items:  center;
-                                                                         ">
-                                                                        <div class="flexrow" style='flex-wrap: nowrap;  align-items:  center;justify-content:  space-around;'>
-                                                                            <p style="padding:5px">Note critique : +5</p>
-                                                                            <div class="btn btn-success">
-                                                                                <div class="BoxFrameBtn " style="padding:5px">
-                                                                                    <p>J'aime</p>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="btn btn-warning" >
-                                                                                <div class="BoxFrameBtn " style="padding:5px" >
-                                                                                    <p>J'aime pas</p>
-                                                                                </div>
+                                        <div class="panel-body">
+                                            <div class="panel-group">
+                                                <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
+                                                {% for critique in serie.critiques %}
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading">Critique de <a href="{{path('utilisateur_show', {"id": critique.auteur.id})}}">{{critique.auteur.username}} - Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-2">
+                                                                <img class="img-responsive" src="http://t0.gstatic.com/images?q=tbn:ANd9GcRY1t4XoXCwsFcxJzH8u8rg1EYkwEy1MSBVScHOTLKsQFBJkXQNCNS4" style='max-width: 30vw'/>
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <div class="flexrow" style="justify-content:  space-between; align-items:  center;
+                                                                     ">
+                                                                    <div class="flexrow" style='flex-wrap: nowrap;  align-items:  center;justify-content:  space-around;'>
+                                                                        <p style="padding:5px">Note critique : +5</p>
+                                                                        <div class="btn btn-success">
+                                                                            <div class="BoxFrameBtn " style="padding:5px">
+                                                                                <p>J'aime</p>
                                                                             </div>
                                                                         </div>
-
+                                                                        <div class="btn btn-warning" >
+                                                                            <div class="BoxFrameBtn " style="padding:5px" >
+                                                                                <p>J'aime pas</p>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
-                                                                    <p style="padding:10px">{{critique.contenu}}</p>
                                                                 </div>
+                                                                <p style="padding:10px">{{critique.contenu}}</p>
                                                             </div>
-
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
-                                    {% endfor %}
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
@@ -193,24 +191,24 @@
             </div>
             <!--/////////////////********|Aside Right|********\\\\\\\\\\\\\\\\\!-->
             <div class="col-sm-2 Aside ">
-                <h3>Séries suivies par Moi</h3>
+                <h3>Séries suivies par {{utilisateur.username}}</h3>
                 <hr>
                 <div class="panel-body" style="padding:1px 0px 0px 0px; ">
-
+                    {% for serie in utilisateur.abonnements %}
                     <div class="list-group">
                         <a href="#" class="list-group-item list-group-item-info">
                             <div class="flexrow" style="align-items:  center; justify-content: space-around;
                                  ">
                                 <div style="max-width: 30%;">
-                                    <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcRY1t4XoXCwsFcxJzH8u8rg1EYkwEy1MSBVScHOTLKsQFBJkXQNCNS4"/>
+                                    <img src="{{serie.url}}"/>
                                 </div>
                                 <div style="width : 70%;">
-                                    Titre série
+                                    {{serie.titre}}
                                 </div>
                             </div>
                         </a>
                     </div>
-
+                    {% endfor %}
                 </div>
             </div>
         </div>
