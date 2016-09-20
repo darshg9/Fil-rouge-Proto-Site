@@ -50,10 +50,15 @@
                                 <a href="{{path('abonnement',{'id':serie.id})}}" class="aButton" >
                                     <div class="btn btn-info">
                                         <div class="BoxFrameBtn">
-                                            <p>S'abonner à la Série</p>
+                                            {% if serie in app.user.abonnements  %}
+                                                <p> Se Desabonné</p>
+                                            {% else %}
+                                                <p>Abonne toi</p>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </a>
+
                                 <div class="btn btn-warning" >
                                     <div class="BoxFrameBtn " >
                                         <p><a href="{{ path('serie_edit', { 'id': serie.id }) }}">Editer</a></p>

@@ -264,6 +264,18 @@ class Serie
         return $this;
     }
 
+    public function removeAbonne($abonne)
+    {
+        $arrayAbonnement = $abonne->getAbonnements()->ToArray();
+        unset($arrayAbonnement[$this]);
+        for ($i = 0; $i < count($abonne->getAbonnements()); $i++)
+        {
+            var_dump($abonne->getAbonnements()[$i]->getTitre());
+        }
+        die();
+        return $this;
+    }
+
     public function getAbonnes()
     {
 
