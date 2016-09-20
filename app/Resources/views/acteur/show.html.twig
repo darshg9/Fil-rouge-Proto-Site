@@ -59,7 +59,7 @@
                                     {% for serie in series %}
                                         <tr>
                                             <td>Année</td>
-                                            <td>{{ serie.anneeDebut }}</td>
+                                            <td>{{ serie.anneeDebut| date("d/m/Y") }}</td>
                                             <td>Titre de série</td>
                                             <td>{{ serie.titre }}</td>
                                         </tr>

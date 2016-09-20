@@ -10,7 +10,7 @@
                         <h1>Liste des Acteurs</h1>
                     </div>
                     <div class="col-sm-4 ">
-                        <a href="login.php" class="aButton pull-right" >
+                        <a href="{{path('acteur_new')}}" class="aButton pull-right" >
                             <div class="btn btn-info">
                                 <div class="BoxFrameBtn">
                                     <p>Proposer un Acteur</p>
@@ -45,8 +45,9 @@
                     </div>
                 </div>
                 <!--/////////////////********|Liste des Acteurs|********\\\\\\\\\\\\\\\\\!-->
-                {% for acteur in acteurs %}
-                    <div class='flexrow' style='justify-content:  center;'>
+                <div class='flexrow' style='justify-content:  center;'>
+                    {% for acteur in acteurs %}
+
                         <div class="smallBox" style='background-image: url("{{acteur.url}}");background-size: cover;background-repeat: no-repeat;background-position-x: 50%;'>
                             <a href="{{ path('acteur_show', { 'id': acteur.id }) }}">
                                 <div class="BoxFrame" style=" height: 300px;">
@@ -56,8 +57,33 @@
                                 </div>
                             </a>
                         </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+            <div class="col-sm-2 Aside">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <p>Dernièrs acteurs ajoutées</p>
                     </div>
-                {% endfor %}
+                    <div class="panel-body" style="padding:1px 0px 0px 0px; ">
+
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-info">
+                                <div class="flexrow" style="align-items:  center; justify-content: space-around;
+                                     ">
+                                    <div style="max-width: 30%;">
+                                        <img src="http://t0.gstatic.com/images?q=tbn:ANd9GcRY1t4XoXCwsFcxJzH8u8rg1EYkwEy1MSBVScHOTLKsQFBJkXQNCNS4"/>
+                                    </div>
+                                    <div style="width : 70%;
+                                         ">
+                                        First item
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     {% endblock %}
