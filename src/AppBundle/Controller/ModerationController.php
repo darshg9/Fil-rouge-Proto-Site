@@ -66,7 +66,6 @@ class ModerationController extends Controller
     public function bannirAction(Utilisateur $utilisateur)
     {
         $em = $this->getDoctrine()->getManager();
-        var_dump($utilisateur->isEnabled());
         if ($utilisateur->isEnabled())
         {
             $utilisateur->setEnabled(false);

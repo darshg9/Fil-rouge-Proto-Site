@@ -194,20 +194,25 @@
                                                 </td>
                                                 <td>
                                                     <a href="{{path('bannir',{'id':utilisateur.id})}}">
-                                                        <div class="btn btn-info" >
-                                                            <div class="BoxFrameBtn " >
-                                                                <p>Débannir</p>
+                                                        {% if utilisateur.isEnabled %}
+                                                            <div class="btn btn-danger" >
+                                                                <div class="BoxFrameBtn " >
+                                                                    <p>Bannir</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        {% else %}
+                                                            <div class="btn btn-info" >
+                                                                <div class="BoxFrameBtn " >
+                                                                    <p>Débannir</p>
+                                                                </div>
+                                                            </div>
+                                                        {% endif %}
+
                                                     </a>
                                                 </td>
                                                 <td>
                                                     <a href="{{path('bannir',{'id':utilisateur.id})}}">
-                                                        <div class="btn btn-danger" >
-                                                            <div class="BoxFrameBtn " >
-                                                                <p>Bannir</p>
-                                                            </div>
-                                                        </div>
+
                                                     </a>
                                                 </td>
 
