@@ -151,17 +151,8 @@ class UtilisateurController extends Controller
         $em = $this->getDoctrine()->getManager();
         $utilisateur = $this->getUser();
 
-        ///DEBUG ABONNEMENT LIST FOR THAT USER
-//        for ($i = 0; $i < count($utilisateur->getAbonnements()); $i++)
-//        {
-//            var_dump($utilisateur->getAbonnements()[$i]->getTitre());
-//        }
-//        die();
-
-
         if (in_array($serie, $utilisateur->getAbonnements()->toArray()))
         {
-            var_dump('go');
             $serie->removeAbonne($utilisateur);
         }
         else

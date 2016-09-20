@@ -266,13 +266,21 @@ class Serie
 
     public function removeAbonne($abonne)
     {
-        $arrayAbonnement = $abonne->getAbonnements()->ToArray();
-        unset($arrayAbonnement[$this]);
-        for ($i = 0; $i < count($abonne->getAbonnements()); $i++)
+        $arrayAbonnement = $abonne->getAbonnements();
+        var_dump(count($arrayAbonnement));
+        var_dump(count($this->abonnes));
+
+        foreach ($arrayAbonnement as $key => $abonnement)
         {
-            var_dump($abonne->getAbonnements()[$i]->getTitre());
+            if ($abonnement === $this)
+            {
+                var_dump('find');
+                unset($arrayAbonnement[$key]);
+                unset($this->abonnes[$key]);
+            }
         }
-        die();
+        var_dump(count($arrayAbonnement));
+        var_dump(count($this->abonnes));
         return $this;
     }
 
