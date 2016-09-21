@@ -129,11 +129,17 @@ class Utilisateur extends BaseUser
      */
     protected $episodesVisionnes;
 
+    /**
+     * @ORM\Column(name="Votes_critiques", type="array", nullable=true)
+     */
+    protected $voteCritiques;
+
     public function __construct()
     {
 
         parent::__construct();
         $this->activite = [];
+        $this->voteCritiques = [];
 
     }
 
@@ -432,7 +438,7 @@ class Utilisateur extends BaseUser
     {
 
         return $this->episodesVisionnes;
-        
+
     }
 
     public function addEpisodesVisionnes($episodesVisionnes)
@@ -477,6 +483,21 @@ class Utilisateur extends BaseUser
         }
 
     return $this;
+
+    }
+
+    public function getVoteCritiques()
+    {
+
+        return $this->voteCritiques;
+
+    }
+
+    public function addVoteCritique($id)
+    {
+
+        $this->voteCritiques[] = $id;
+        return $this;
 
     }
 

@@ -154,4 +154,25 @@ class CritiqueController extends Controller
         ;
     }
 
+    /**
+     * @Route("/vote/{id}/{vote}", name="critique_vote")
+     *          requirements={
+     *          "vote": "\d+"
+     *      })
+     * @Method("GET")
+     */
+    public function voteAction(Critique $critique, $vote) {
+
+        $critique->setNote($critique->getNote() + $vote);
+        $utilisateur = $this->getUser();
+        $utilisateur->addVoteCritique($critique->getId());
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($critique);
+        $em->persist($utilisateur);
+        $em->flush();
+
+        return $this->redirectToRoute('serie_show', ["id" => $critique->getSerie()->getId()]);
+
+    }
+
 }
