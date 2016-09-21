@@ -153,14 +153,23 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Ecrire un Commentaire</div>
                     <div class="panel-body">
-                        <form action="{{path('critique_new',{'id':serie.id})}}" method="POST" class="form-horizontal" role="form">
+                        {#<form action="{{path('critique_new',{'id':serie.id})}}" method="POST" class="form-horizontal" role="form">
                             <div class="form-group row">
                                 <label class="control-label col-sm-2">Laisser un commentaire :</label>
                                 <div class="col-sm-10">
                                     <input type="textarea" class="form-control" name="content" placeholder="Laisser un commentaire">
+                                    <div class="row">
+                                        <div class="col-sm-2 pull-right ">
+                                            <button type="submit" class="form-control btn btn-success">Envoyer</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </form>
+                        </form>#}
+                        {{ form_start(form) }}
+                        {{ form_widget(form) }}
+                        <input type="submit" value="Create" />
+                        {{ form_end(form) }}
                     </div>
                 </div>
 

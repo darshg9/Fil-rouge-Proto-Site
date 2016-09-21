@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Critique;
 use AppBundle\Entity\Serie;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -73,15 +74,21 @@ class SerieController extends Controller
      */
     public function showAction(Serie $serie)
     {
-        $deleteForm = $this->createDeleteForm($serie);
         $em = $this->getDoctrine()->getManager();
 
-        $acteur_serie = $em->getRepository("AppBundle:Serie")->findActeurs($serie->getId());
+        $deleteForm = $this->createDeleteForm($serie);
+
+        $critique = new Critique();
+        $acteurs_serie = $em->getRepository('AppBundle:Serie')->findActeurs($serie->getId());
+
+        $form = $this->createForm('AppBundle\Form\CritiqueType', $critique);
 
         return $this->render('serie/show.html.twig', array(
                     'serie' => $serie,
-                    'acteurs_serie' => $acteur_serie,
+                    'acteurs_serie' => $acteurs_serie,
+                    'critique' => $critique,
                     'delete_form' => $deleteForm->createView(),
+                    'form' => $form->createView(),
         ));
     }
 

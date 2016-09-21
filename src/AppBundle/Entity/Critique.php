@@ -13,6 +13,7 @@ use \DateTime;
  */
 class Critique
 {
+
     /**
      * @var int
      *
@@ -60,11 +61,11 @@ class Critique
      */
     private $signale;
 
-    public function __construct() {
+    public function __construct()
+    {
 
         $this->dateCritique = new DateTime();
         $this->note = 2.5;
-
     }
 
     /**
@@ -146,45 +147,44 @@ class Critique
         return $this->note;
     }
 
-    public function getSerie() {
+    public function getSerie()
+    {
 
         return $this->serie;
-
     }
 
-    public function setSerie($serie) {
+    public function setSerie($serie)
+    {
 
         $this->serie = $serie;
         $serie->addCritique($this);
         return $this;
-
     }
 
-    public function getAuteur() {
+    public function getAuteur()
+    {
 
         return $this->auteur;
-
     }
 
-    public function setAuteur($auteur) {
-
+    public function setAuteur($auteur)
+    {
         $this->auteur = $auteur;
         $auteur->addCritique($this)->addActivite(["type" => "critique", "cible" => $this]);
         return $this;
-
     }
 
-    public function getSignale() {
+    public function getSignale()
+    {
 
         return $this->signale;
-
     }
 
-    public function setSignale($signale) {
+    public function setSignale($signale)
+    {
 
         $this->signale = $signale;
         return $this;
-
     }
 
 }

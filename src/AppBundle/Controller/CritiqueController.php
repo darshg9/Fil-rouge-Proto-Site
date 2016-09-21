@@ -48,6 +48,8 @@ class CritiqueController extends Controller
         $critique = new Critique();
         $form = $this->createForm('AppBundle\Form\CritiqueType', $critique);
         $form->handleRequest($request);
+        $critique->setDateCritique(new DateTime('now'));
+
 
         if ($form->isSubmitted() && $form->isValid())
         {
@@ -61,7 +63,7 @@ class CritiqueController extends Controller
             $em->persist($serie);
             $em->flush();
 
-            return $this->redirectToRoute('serie_show', array('id' => $id));
+            return $this->redirectToRoute('critique_show', array('id' => $critique->getId()));
         }
 
         return $this->render('critique/new.html.twig', array(
