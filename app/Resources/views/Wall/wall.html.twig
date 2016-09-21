@@ -61,7 +61,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% elseif article.type == "serie" and article.cible.valide %}
+                                    {% elseif article.type == "serie" %}
                                         <div class="BoxFrame" style="margin:5px;">
                                             <div class="row flexrow" style="min-height: 80px;
                                                  align-items:  center; ">
@@ -73,7 +73,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% elseif article.type == "acteur" and article.cible.valide %}
+                                    {% elseif article.type == "acteur" %}
                                         <div class="BoxFrame" style="margin:5px;">
                                             <div class="row flexrow" style="min-height: 80px;
                                                  align-items:  center; ">
@@ -93,7 +93,7 @@
                                                     <p style>{{article.date | date("d/m/Y - H:i")}}</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                                    <p>A proposé l'épisode : <a href="{{path('episode_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a> de <a href="{{path('serie_show', {"id": article.cible.saison.serie.id})}}">{{article.cible.saison.denomination}}</a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                                     <p style>{{article.date | date("d/m/Y - H:i")}}</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <p>A proposé l'acteur : <a href="{{path('acteur_show', {"id": article.cible.id})}}">{{article.cible.getNomComplet}}</a></p>
+                                                    <p>A visionné l'épisode : <a href="{{path('episode_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a> de <a href="{{path('serie_show', {"id": article.cible.saison.serie.id})}}">{{article.cible.saison.denomination}}</a></p>
                                                 </div>
                                             </div>
                                         </div>

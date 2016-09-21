@@ -155,7 +155,7 @@ class Episode
 
         $this->diffusions[] = $diffusion;
         return $this;
-        
+
     }
 
     public function getDiffusions() {
@@ -181,7 +181,7 @@ class Episode
     public function setAuteurProposition($auteurProposition) {
 
         $this->auteurProposition = $auteurProposition;
-        $auteurProposition->addPropositionsEpisodes($this)->addActivite(["type" => "episode", "cible" => $this]);
+        $auteurProposition->addPropositionsEpisodes($this)->addActivite(["type" => "episode", "cible" => $this])->addEpisodesVisionnes($this)->addActivite(["type" => "visionnage", "cible" => $this]);
         return $this;
 
     }

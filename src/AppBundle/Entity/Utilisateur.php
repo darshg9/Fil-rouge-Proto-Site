@@ -133,10 +133,8 @@ class Utilisateur extends BaseUser
     {
 
         parent::__construct();
-        for ($ii = 0; $ii < 20; $ii++)
-        {
-            $this->activite[] = [];
-        }
+        $this->activite = [];
+
     }
 
     /**
@@ -434,6 +432,7 @@ class Utilisateur extends BaseUser
     {
 
         return $this->episodesVisionnes;
+        
     }
 
     public function addEpisodesVisionnes($episodesVisionnes)
@@ -441,12 +440,14 @@ class Utilisateur extends BaseUser
 
         $this->episodesVisionnes[] = $episodesVisionnes;
         return $this;
+
     }
 
     public function getCritiques()
     {
 
         return $this->critiques;
+
     }
 
     public function addCritique($critique)
@@ -454,24 +455,29 @@ class Utilisateur extends BaseUser
 
         $this->critiques[] = $critique;
         return $this;
+
     }
 
     public function getActivite()
     {
 
         return $this->activite;
+
     }
 
     public function addActivite($activite)
     {
 
-//        for ($ii = 18; $ii >= 0 ; $ii--) {
-//
-//            $this->activite[$ii+1] = $this->activite[$ii];
-//
-//        }
-//        $activite["date"] = new DateTime();
-//        $this->activite[0] = $activite;
+        $activite["date"] = new DateTime();
+        array_unshift($this->activite, $activite);
+        if (sizeof($this->activite) > 20) {
+
+            array_pop($this->activite);
+
+        }
+
+    return $this;
+
     }
 
 }
