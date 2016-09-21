@@ -14,7 +14,7 @@
                     <!--/////////////////********| Description Série|********\\\\\\\\\\\\\\\\\!-->
                     <div class=" col-sm-5 flexcol" >
                         <div class="detailTitle flexrow" style="justify-content: space-between; padding:20px; align-items:  center;">
-                            <h1>{{ episode.serie.titre }}</h1>
+                            <h1>{{ episode.saison.serie.titre }}</h1>
                             <div>
                                 <a href="twigpath"></a>
                                 <div class="btn btn-info" >
@@ -46,7 +46,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Duree :</td>
-                                                    <td>{{ episode.duree }}</td>
+                                                    <td>{{ episode.duree | date("H:m")}}</td>
                                                 </tr>
                                             </tbody>
                                         </table>
