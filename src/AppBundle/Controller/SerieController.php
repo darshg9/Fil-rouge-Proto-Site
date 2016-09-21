@@ -77,9 +77,6 @@ class SerieController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $deleteForm = $this->createDeleteForm($serie);
-        var_dump('word');
-        var_dump('word');
-
         $saison = $em->getRepository('AppBundle:Serie')->findLastSaison($serie->getId());
         $critique = new Critique();
         $acteurs_serie = $em->getRepository('AppBundle:Serie')->findActeurs($serie->getId());
