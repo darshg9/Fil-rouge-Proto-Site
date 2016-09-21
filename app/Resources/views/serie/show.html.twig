@@ -150,7 +150,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Ecrire un Commentaire</div>
+                    <div class="panel-body">
+                        <form action="{{path('critique_new',{'id':serie.id})}}" method="POST" class="form-horizontal" role="form">
+                            <div class="form-group row">
+                                <label class="control-label col-sm-2">Laisser un commentaire :</label>
+                                <div class="col-sm-10">
+                                    <input type="textarea" class="form-control" name="content" placeholder="Laisser un commentaire">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
             </div>
+
             <!--/////////////////********|Aside Right|********\\\\\\\\\\\\\\\\\!-->
             <div class="col-sm-2 Aside ">
                 <div class="panel-group">

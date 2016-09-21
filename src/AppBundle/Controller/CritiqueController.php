@@ -16,6 +16,7 @@ use AppBundle\Form\CritiqueType;
  */
 class CritiqueController extends Controller
 {
+
     /**
      * Lists all Critique entities.
      *
@@ -29,7 +30,7 @@ class CritiqueController extends Controller
         $critiques = $em->getRepository('AppBundle:Critique')->findAll();
 
         return $this->render('critique/index.html.twig', array(
-            'critiques' => $critiques,
+                    'critiques' => $critiques,
         ));
     }
 
@@ -48,7 +49,8 @@ class CritiqueController extends Controller
         $form = $this->createForm('AppBundle\Form\CritiqueType', $critique);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
 
             $auteur = $this->getUser();
             $em = $this->getDoctrine()->getManager();
@@ -59,12 +61,12 @@ class CritiqueController extends Controller
             $em->persist($serie);
             $em->flush();
 
-            return $this->redirectToRoute('critique_show', array('id' => $critique->getId()));
+            return $this->redirectToRoute('serie_show', array('id' => $id));
         }
 
         return $this->render('critique/new.html.twig', array(
-            'critique' => $critique,
-            'form' => $form->createView(),
+                    'critique' => $critique,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -79,8 +81,8 @@ class CritiqueController extends Controller
         $deleteForm = $this->createDeleteForm($critique);
 
         return $this->render('critique/show.html.twig', array(
-            'critique' => $critique,
-            'delete_form' => $deleteForm->createView(),
+                    'critique' => $critique,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -96,7 +98,8 @@ class CritiqueController extends Controller
         $editForm = $this->createForm('AppBundle\Form\CritiqueType', $critique);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($critique);
             $em->flush();
@@ -105,9 +108,9 @@ class CritiqueController extends Controller
         }
 
         return $this->render('critique/edit.html.twig', array(
-            'critique' => $critique,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'critique' => $critique,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -122,7 +125,8 @@ class CritiqueController extends Controller
         $form = $this->createDeleteForm($critique);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->remove($critique);
             $em->flush();
@@ -141,9 +145,10 @@ class CritiqueController extends Controller
     private function createDeleteForm(Critique $critique)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('critique_delete', array('id' => $critique->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('critique_delete', array('id' => $critique->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
