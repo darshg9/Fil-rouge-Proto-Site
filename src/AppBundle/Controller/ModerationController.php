@@ -23,7 +23,7 @@ class ModerationController extends Controller
         $acteurs_not_valide = $em->getRepository('AppBundle:Acteur')->findActeursNotActive();
         $utilisateurs = $em->getRepository('AppBundle:Utilisateur')->findAll();
         $utilisateurs_ban = $em->getRepository('AppBundle:Utilisateur')->findUtilisateurBan();
-        $utilisateurs_role = $em->getRepository('AppBundle:Utilisateur')->findUtilisateurRole('ROLE_ADMIN');
+        $utilisateurs_role = $em->getRepository('AppBundle:Utilisateur')->findAll();
         $critiques_signale = $em->getRepository('AppBundle:Critique')->findCritiqueSignale();
 
         return $this->render('moderation/index.html.twig', array(
