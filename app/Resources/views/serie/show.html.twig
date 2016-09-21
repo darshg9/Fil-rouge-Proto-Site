@@ -232,12 +232,12 @@
                                                     {% if critique.id not in app.user.voteCritiques %}
                                                         <div class="btn btn-success">
                                                             <div class="BoxFrameBtn " style="padding:5px">
-                                                                <p><a href="{{path('critique_vote',{'id':serie.id, "vote": 1})}}">J'aime</a></p>
+                                                                <p><a href="{{path('critique_vote',{'id':critique.id, "vote": 1})}}">J'aime</a></p>
                                                             </div>
                                                         </div>
                                                         <div class="btn btn-warning" >
                                                             <div class="BoxFrameBtn " style="padding:5px" >
-                                                                <p><a href="{{path('critique_vote',{'id':serie.id, "vote": -1})}}">J'aime pas</a></p>
+                                                                <p><a href="{{path('critique_vote',{'id':critique.id, "vote": -1})}}">J'aime pas</a></p>
                                                             </div>
                                                         </div>
                                                     {% endif %}
