@@ -4,6 +4,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Critique;
 use AppBundle\Entity\Serie;
+use AppBundle\Entity\Saison;
+use AppBundle\Entity\Episode;
 use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -44,16 +46,24 @@ class SerieController extends Controller
     public function newAction(Request $request)
     {
         $serie = new Serie();
+
         $form = $this->createForm('AppBundle\Form\SerieType', $serie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid())
         {
 
+            $saison = new Saison();
+            $episode = new Episode();
             $auteur = $this->getUser();
+
+            $saison->setSerie($serie)->setDenomination("Saison 1");
+            $episode->setSaison($saison)->setAuteurProposition($auteur)->setTitre("Episode 1")->setValide(false);
             $serie->setAuteurProposition($auteur)->setValide(false);
             $em = $this->getDoctrine()->getManager();
             $em->persist($serie);
+            $em->persist($saison);
+            $em->persist($episode);
             $em->persist($auteur);
             $em->flush();
 
