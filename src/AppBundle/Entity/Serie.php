@@ -260,14 +260,14 @@ class Serie
     {
 
         $this->abonnes[] = $abonne;
-        $abonne->addAbonnements($this);
+        $abonne->addAbonnements($this)->addActivite(["type" => "abonnement", "cible" => $this]);
         return $this;
     }
 
     public function removeAbonne($abonne)
     {
         $arrayAbonnement = $abonne->getAbonnements();
-
+        $abonne->addActivite(["type" => "desabonnement", "cible" => $this]);
 
         foreach ($arrayAbonnement as $key => $abonnement)
         {

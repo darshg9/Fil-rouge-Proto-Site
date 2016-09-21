@@ -49,6 +49,18 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    {% elseif article.type == "desabonnement" %}
+                                        <div class="BoxFrame" style="margin:5px;">
+                                            <div class="row flexrow" style="min-height: 80px;
+                                                 align-items:  center; ">
+                                                <div class="col-sm-3">
+                                                    <p style>{{article.date | date("d/m/Y - H:i")}}</p>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <p>Ne suit plus la série : <a href="{{path('serie_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a></p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     {% elseif article.type == "critique" %}
                                         <div class="BoxFrame" style="margin:5px;">
                                             <div class="row flexrow" style="min-height: 80px;
