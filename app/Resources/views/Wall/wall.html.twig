@@ -184,7 +184,7 @@
                                                 <!--/////////////////********|Un Commentaire|********\\\\\\\\\\\\\\\\\!-->
                                                 {% for critique in serie.critiques %}
                                                 <div class="panel panel-default">
-                                                    <div class="panel-heading">Critique de <a href="{{path('utilisateur_show', {"id": critique.auteur.id})}}">{{critique.auteur.username}} - Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
+                                                    <div class="panel-heading">Critique de <a href="{{path('wall_show', {"id": critique.auteur.id})}}">{{critique.auteur.username}} - Le {{critique.dateCritique | date("d/m/Y à H:i")}}</div>
                                                     <div class="panel-body">
                                                         <div class="row">
                                                             <div class="col-sm-2">

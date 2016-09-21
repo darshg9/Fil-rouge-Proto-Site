@@ -17,7 +17,7 @@ class DefaultController extends Controller
         // replace this example code with whatever you need
         $em = $this->getDoctrine()->getManager();
 
-        $series = $em->getRepository('AppBundle:Serie')->findAll();
+        $series = $em->getRepository('AppBundle:Serie')->findTop7Series($em);
         return $this->render('index.html.twig', array(
                     'series' => $series,
         ));
