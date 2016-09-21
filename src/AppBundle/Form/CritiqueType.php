@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CritiqueType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -15,7 +16,7 @@ class CritiqueType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('contenu')
+                ->add('contenu')
         ;
     }
 
@@ -28,4 +29,5 @@ class CritiqueType extends AbstractType
             'data_class' => 'AppBundle\Entity\Critique'
         ));
     }
+
 }

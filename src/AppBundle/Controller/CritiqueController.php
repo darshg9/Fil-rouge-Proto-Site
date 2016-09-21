@@ -2,12 +2,12 @@
 
 namespace AppBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use AppBundle\Entity\Critique;
+use DateTime;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\Critique;
-use AppBundle\Form\CritiqueType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Critique controller.
@@ -57,13 +57,14 @@ class CritiqueController extends Controller
             $auteur = $this->getUser();
             $em = $this->getDoctrine()->getManager();
             $serie = $em->getRepository("AppBundle:Serie")->find($id);
+
             $critique->setAuteur($auteur)->setSerie($serie)->setSignale(false);
             $em->persist($critique);
             $em->persist($auteur);
             $em->persist($serie);
             $em->flush();
 
-            return $this->redirectToRoute('critique_show', array('id' => $critique->getId()));
+            return $this->redirectToRoute('serie_show', array('id' => $id));
         }
 
         return $this->render('critique/new.html.twig', array(

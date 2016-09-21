@@ -80,12 +80,14 @@ class SerieController extends Controller
 
         $critique = new Critique();
         $acteurs_serie = $em->getRepository('AppBundle:Serie')->findActeurs($serie->getId());
+        $critiques_serie = $em->getRepository('AppBundle:Serie')->findCritiques($serie->getId());
 
         $form = $this->createForm('AppBundle\Form\CritiqueType', $critique);
 
         return $this->render('serie/show.html.twig', array(
                     'serie' => $serie,
                     'acteurs_serie' => $acteurs_serie,
+                    'critiques_serie' => $critiques_serie,
                     'critique' => $critique,
                     'delete_form' => $deleteForm->createView(),
                     'form' => $form->createView(),

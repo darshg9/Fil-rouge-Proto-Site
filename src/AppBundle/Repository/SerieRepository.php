@@ -34,4 +34,12 @@ class SerieRepository extends EntityRepository
                         ->getResult();
     }
 
+    public function findCritiques($id)
+    {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT c FROM AppBundle:Critique c WHERE c.serie = :id')
+                        ->setParameter('id', $id)
+                        ->getResult();
+    }
+
 }
