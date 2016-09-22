@@ -12,20 +12,20 @@
                         <div class=" Rating flexcol" style="align-items:  center;" >
                             <div class="flexrow" style="justify-content:  center;width : 100%;">
                                 {% if serie.id not in app.user.voteSeries|keys %}
-                                <form method="POST" action="{{path('serie_vote',{'id':serie.id})}}">
-                                    <div style="width : 80px;">
-                                        <select class="form-control" name="vote">
-                                            {% for ii in 0..5 %}
-                                                <option value="{{ii}}"
-                                                {# % if serie.id in app.user.voteSeries|keys and ii == app.user.voteSeries[serie.id] % #} {# { "selected" } #} {# % endif % #}
-                                                >{{ii}}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <input type="submit" value="Voter" class="form-control">
-                                    </div>
-                                </form>
+                                    <form method="POST" action="{{path('serie_vote',{'id':serie.id})}}">
+                                        <div style="width : 80px;">
+                                            <select class="form-control" name="vote">
+                                                {% for ii in 0..5 %}
+                                                    <option value="{{ii}}"
+                                                            {# % if serie.id in app.user.voteSeries|keys and ii == app.user.voteSeries[serie.id] % #} {# { "selected" } #} {# % endif % #}
+                                                            >{{ii}}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <input type="submit" value="Voter" class="form-control">
+                                        </div>
+                                    </form>
                                 {% endif %}
                             </div>
 
@@ -128,14 +128,7 @@
                                                     <td>Status :</td>
                                                     <td>{{serie.status}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Nombre de saisons :</td>
-                                                    <td></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Nombre d'épisodes :</td>
-                                                    <td></td>
-                                                </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -149,6 +142,15 @@
                                                 {% for acteur in acteurs_serie %}
                                                     <tr>
                                                         <td>{{ acteur.nom }} {{ acteur.prenom }}</td>
+                                                        <td>
+                                                            <a href="{{path('acteur_show',{'id':acteur.id})}}">
+                                                                <div class="btn btn-info">
+                                                                    <div class="BoxFrameBtn">
+                                                                        <span class="glyphicon glyphicon-eye-open"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </td>
                                                     </tr>
                                                 {% endfor %}
                                             </tbody>
