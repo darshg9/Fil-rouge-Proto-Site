@@ -134,12 +134,18 @@ class Utilisateur extends BaseUser
      */
     protected $voteCritiques;
 
+    /**
+     * @ORM\Column(name="Votes_series", type="array", nullable=true)
+     */
+    protected $voteSeries;
+
     public function __construct()
     {
 
         parent::__construct();
         $this->activite = [];
         $this->voteCritiques = [];
+        $this->voteSeries = [];
 
     }
 
@@ -497,6 +503,21 @@ class Utilisateur extends BaseUser
     {
 
         $this->voteCritiques[] = $id;
+        return $this;
+
+    }
+
+    public function getVoteSeries()
+    {
+
+        return $this->voteSeries;
+
+    }
+
+    public function addVoteSerie($serie, $vote)
+    {
+
+        $this->voteSeries[$serie] = $vote;
         return $this;
 
     }

@@ -187,4 +187,27 @@ class SerieController extends Controller
         ;
     }
 
+    /**
+     * @Route("/vote/{id}", name="serie_vote")})
+     * @Method({"GET", "POST"})
+     */
+    public function voteAction(Serie $serie) {
+
+        $utilisateur = $this->getUser();
+        /*if (array_key_exists($serie->getId(), $utilisateur->voteSeries)) {
+
+            $serie->
+
+        }*/
+        $utilisateur->addVoteSerie($serie->getId(), $_POST['vote']);
+        $serie->addNote($_POST['vote']);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($serie);
+        $em->persist($utilisateur);
+        $em->flush();
+
+        return $this->redirectToRoute('serie_show', ["id" => $serie->getId()]);
+
+    }
+
 }

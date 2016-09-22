@@ -10,14 +10,23 @@
                     <div class="col-sm-7">
                         <img src="{{serie.url}}" class="img-responsive" alt="Cinque Terre">
                         <div class=" Rating flexcol" style="align-items:  center;" >
-                            <div class="flexrow" style="justify-content:  center;width : 100%;
-                                 ">
-                                <div style="width : 80px;">
-                                    <input type="number" class="form-control" name="rating">
-                                </div>
-                                <div>
-                                    <input type="submit" value="Voté" class="form-control">
-                                </div>
+                            <div class="flexrow" style="justify-content:  center;width : 100%;">
+                                {% if serie.id not in app.user.voteSeries|keys %}
+                                <form method="POST" action="{{path('serie_vote',{'id':serie.id})}}">
+                                    <div style="width : 80px;">
+                                        <select class="form-control" name="vote">
+                                            {% for ii in 0..5 %}
+                                                <option value="{{ii}}"
+                                                {# % if serie.id in app.user.voteSeries|keys and ii == app.user.voteSeries[serie.id] % #} {# { "selected" } #} {# % endif % #}
+                                                >{{ii}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <input type="submit" value="Voter" class="form-control">
+                                    </div>
+                                </form>
+                                {% endif %}
                             </div>
 
                             <div class="flexcol" style="align-items:  center;
@@ -25,19 +34,23 @@
                                 <div class="Star flexrow" style="flex-wrap: nowrap">
 
                                     {% set counter = 0 %}
-                                    {% for i in 1..serie.note %}
-                                        <span class="glyphicon glyphicon-star"></span>
-                                    {% endfor %}
-                                    {% if serie.note<5 %}
-                                        {% set counter = 5-serie.note %}
-                                        {% for i in 1..counter %}
-                                            <span class="glyphicon glyphicon-star-empty"></span>
-
+                                    {% if serie.getNote != 0 %}
+                                        {% for i in 1..serie.getNote %}
+                                            <span class="glyphicon glyphicon-star"></span>
                                         {% endfor %}
-                                    {% endif %}
-                                </div>
-                                <h3>{{ serie.note }}</h3>
+                                        {% if serie.note<5 %}
+                                            {% set counter = 5-serie.getNote %}
+                                            {% for i in 1..counter %}
+                                                <span class="glyphicon glyphicon-star-empty"></span>
+                                            {% endfor %}
+                                        {% endif %}
 
+                                        <h3>{{ serie.getNote }} - {{ serie.notes|length}} vote(s)</h3>
+                                    {% else %}
+                                        <h3>Pas de votes pour cette série</h3>
+                                    {% endif %}
+
+                                </div>
                             </div>
 
                         </div>
