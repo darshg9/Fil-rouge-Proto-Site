@@ -65,7 +65,7 @@ class Critique
     {
 
         $this->dateCritique = new DateTime();
-        $this->note = 2.5;
+        $this->note = 0;
     }
 
     /**

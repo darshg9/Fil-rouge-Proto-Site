@@ -4,7 +4,7 @@
     <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 {% endif %}
 <div class="container" style="width : 40%;">
-    <h1>Créer un compte utilisateur</h1>
+    <h1>Se connecter</h1>
 
     <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" role="form">
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />

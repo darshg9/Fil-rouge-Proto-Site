@@ -182,7 +182,7 @@ class Episode
     {
 
         $this->auteurProposition = $auteurProposition;
-        $auteurProposition->addPropositionsEpisodes($this)->addActivite(["type" => "episode", "cible" => $this])->addEpisodesVisionnes($this)->addActivite(["type" => "visionnage", "cible" => $this]);
+        $auteurProposition->addPropositionsEpisodes($this)->addActivite(["type" => "episode", "cible" => $this]);
         return $this;
     }
 

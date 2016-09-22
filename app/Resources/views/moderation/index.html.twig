@@ -197,7 +197,10 @@
                                                 </td>
                                                 <td>
                                                     <a href="{{path('bannir',{'id':utilisateur.id})}}">
-                                                        {% if "ROLE_ADMIN" in utilisateur.roles %}
+                                                        {% if "ROLE_SUPER_ADMIN" in app.user.roles or
+                                                              ("ROLE_ADMIN" not in utilisateur.roles and
+                                                              ("ROLE_ADMIN" in app.user.roles or
+                                                              ("ROLE_MODO" not in utilisateur.roles and "ROLE_MODO" in app.user.roles))) %}
 
                                                             {% if utilisateur.isEnabled %}
                                                                 <div class="btn btn-danger" >

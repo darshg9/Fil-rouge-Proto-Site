@@ -125,7 +125,7 @@
                                                     <p style>{{article.date | date("d/m/Y - H:i")}}</p>
                                                 </div>
                                                 <div class="col-sm-9">
-                                                    <p>A visionné l'épisode : <a href="{{path('episode_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a> de <a href="{{path('serie_show', {"id": article.cible.saison.serie.id})}}">{{article.cible.saison.denomination}}</a></p>
+                                                    <p>A visionné l'épisode : <a href="{{path('episode_show', {"id": article.cible.id})}}">{{article.cible.titre}}</a> de {{article.cible.saison.denomination}}</a></p>
                                                 </div>
                                             </div>
                                         </div>

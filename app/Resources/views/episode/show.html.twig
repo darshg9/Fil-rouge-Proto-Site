@@ -14,7 +14,7 @@
                     <!--/////////////////********| Description Série|********\\\\\\\\\\\\\\\\\!-->
                     <div class=" col-sm-5 flexcol" >
                         <div class="detailTitle flexrow" style="justify-content: space-between; padding:20px; align-items:  center;">
-                            <h1>{{ episode.saison.serie.titre }}</h1>
+                            <a href="{{path('serie_show',{'id':episode.saison.serie.id})}}"><h1>{{ episode.saison.serie.titre }}</h1></a>
                             <div>
                                 {% if episode in app.user.episodesVisionnes %}
 
@@ -167,7 +167,7 @@
                                 <ul class="list-group">
 
                                     {% for key,episod in saison.episodes %}
-                                        <li class="list-group-item"><a href="{{path('episode_show',{'id':episod.id})}}">Episode {{ key+1 }} - {{ episode.titre }}</a></li>
+                                        <li class="list-group-item"><a href="{{path('episode_show',{'id':episod.id})}}">Episode {{ key+1 }} - {{ episod.titre }}</a></li>
 
                                     {% endfor %}
                                 </ul>
