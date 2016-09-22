@@ -45,7 +45,7 @@ class SerieRepository extends EntityRepository
     public function findTop7Series($em)
     {
 
-        $query = $em->createQuery('SELECT s FROM AppBundle:Serie s ORDER BY s.note DESC')
+        $query = $em->createQuery('SELECT s FROM AppBundle:Serie s ORDER BY s.noteSerie DESC')
                 ->setMaxResults(7);
 
         $series = $query->getResult();

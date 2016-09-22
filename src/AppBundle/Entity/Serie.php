@@ -56,6 +56,11 @@ class Serie
     private $notes;
 
     /**
+     * @ORM\Column(name="Note_serie", type="integer", nullable=true)
+     */
+    private $noteSerie;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="Synopsis", type="text")
@@ -109,6 +114,7 @@ class Serie
     public function __construct() {
 
         $this->notes = [];
+        $this->noteSerie = 0;
 
     }
 
@@ -366,8 +372,15 @@ class Serie
 
     }
 
-    public function getNote() {
+    public function getNoteSerie() {
 
+        return $this->noteSerie;
+
+    }
+
+    public function addNote($note) {
+
+        $this->notes[] = $note;
         $noteSerie = 0;
         if (!empty($this->notes)) {
             foreach ($this->notes as $note) {
@@ -378,13 +391,13 @@ class Serie
             $noteSerie = floor($noteSerie / sizeof($this->notes));
 
         }
-        return $noteSerie;
+        $this->setNoteSerie($noteSerie);
 
     }
 
-    public function addNote($note) {
+    public function setNoteSerie($noteSerie) {
 
-        $this->notes[] = $note;
+        $this->noteSerie = $noteSerie;
         return $this;
 
     }

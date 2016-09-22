@@ -34,18 +34,18 @@
                                 <div class="Star flexrow" style="flex-wrap: nowrap">
 
                                     {% set counter = 0 %}
-                                    {% if serie.getNote != 0 %}
-                                        {% for i in 1..serie.getNote %}
+                                    {% if serie.getNoteSerie != 0 %}
+                                        {% for i in 1..serie.getNoteSerie %}
                                             <span class="glyphicon glyphicon-star"></span>
                                         {% endfor %}
-                                        {% if serie.note<5 %}
-                                            {% set counter = 5-serie.getNote %}
+                                        {% if serie.getNoteSerie < 5 %}
+                                            {% set counter = 5-serie.getNoteSerie %}
                                             {% for i in 1..counter %}
                                                 <span class="glyphicon glyphicon-star-empty"></span>
                                             {% endfor %}
                                         {% endif %}
 
-                                        <h3>{{ serie.getNote }} - {{ serie.notes|length}} vote(s)</h3>
+                                        <h3>{{ serie.getNoteSerie }} - {{ serie.notes|length}} vote(s)</h3>
                                     {% else %}
                                         <h3>Pas de votes pour cette série</h3>
                                     {% endif %}
@@ -298,40 +298,4 @@
         </div>
     </div>
 </section>
-
-</body>
-<h1>Serie</h1>
-
-<table>
-    <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ serie.id }}</td>
-        </tr>
-        <tr>
-            <th>Titre</th>
-            <td>{{ serie.titre }}</td>
-        </tr>
-        <tr>
-            <th>Pays</th>
-            <td>{{ serie.pays }}</td>
-        </tr>
-        <tr>
-            <th>Anneedebut</th>
-            <td>{{ serie.anneeDebut | date('d/m/Y')}}</td>
-        </tr>
-        <tr>
-            <th>Status</th>
-            <td>{{ serie.status }}</td>
-        </tr>
-        <tr>
-            <th>Note</th>
-            <td>{{ serie.note }}</td>
-        </tr>
-        <tr>
-            <th>Synopsis</th>
-            <td>{{ serie.synopsis }}</td>
-        </tr>
-    </tbody>
-</table>
 {% endblock %}
