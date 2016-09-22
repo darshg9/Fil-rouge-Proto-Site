@@ -9,15 +9,17 @@
                     <div class="col-sm-offset-2 col-sm-4">
                         <h1>Liste des Acteurs</h1>
                     </div>
-                    <div class="col-sm-4 ">
-                        <a href="{{path('acteur_new')}}" class="aButton pull-right" >
-                            <div class="btn btn-info">
-                                <div class="BoxFrameBtn">
-                                    <p>Proposer un Acteur</p>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="col-sm-4 ">
+                            <a href="{{path('acteur_new')}}" class="aButton pull-right" >
+                                <div class="btn btn-info">
+                                    <div class="BoxFrameBtn">
+                                        <p>Proposer un Acteur</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
                 <hr>
                 <!--/////////////////********|Bar de recherche|********\\\\\\\\\\\\\\\\\!-->

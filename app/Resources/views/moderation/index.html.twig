@@ -13,7 +13,9 @@
                         <li><a data-toggle="tab" href="#acteur">Propositions d'acteurs</a></li>
                         <li><a data-toggle="tab" href="#commentaire">Commentaires</a></li>
                         <li><a data-toggle="tab" href="#ban">Gestion des bans</a></li>
-                        <li><a data-toggle="tab" href="#moderateur">Gestion des modérateurs</a></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                            <li><a data-toggle="tab" href="#moderateur">Gestion des droits</a></li>
+                            {% endif %}
                     </ul>
 
                     <div class="tab-content" style="padding:10px">
@@ -54,13 +56,15 @@
                                                             </div>
                                                         </div>
                                                     </a>
-                                                    <a href="{{path('serie_delete_get',{'id':serie.id})}}">
-                                                        <div class="btn btn-danger" >
-                                                            <div class="BoxFrameBtn " >
-                                                                <p>Refuser et Supprimer</p>
+                                                    {% if is_granted('ROLE_ADMIN') %}
+                                                        <a href="{{path('serie_delete_get',{'id':serie.id})}}">
+                                                            <div class="btn btn-danger" >
+                                                                <div class="BoxFrameBtn " >
+                                                                    <p>Refuser et Supprimer</p>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </a>
+                                                        </a>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
@@ -106,13 +110,15 @@
                                                                 </div>
                                                             </div>
                                                         </a>
-                                                        <a href="{{path('acteur_delete_get',{'id':acteur.id})}}">
-                                                            <div class="btn btn-danger" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Refuser et Supprimer</p>
+                                                        {% if is_granted('ROLE_ADMIN') %}
+                                                            <a href="{{path('acteur_delete_get',{'id':acteur.id})}}">
+                                                                <div class="btn btn-danger" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Refuser et Supprimer</p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </a>
+                                                            </a>
+                                                        {% endif %}
                                                     </div>
                                                 </div>
                                             </div>
@@ -154,13 +160,15 @@
                                                         </div>
                                                     </div>
                                                 </a>
-                                                <a href="{{path('critique_delete_get',{'id':critique.id})}}">
-                                                    <div class="btn btn-danger" >
-                                                        <div class="BoxFrameBtn " >
-                                                            <p>Supprimer le commentaire</p>
+                                                {% if is_granted('ROLE_ADMIN') %}
+                                                    <a href="{{path('critique_delete_get',{'id':critique.id})}}">
+                                                        <div class="btn btn-danger" >
+                                                            <div class="BoxFrameBtn " >
+                                                                <p>Supprimer le commentaire</p>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </a>
+                                                    </a>
+                                                {% endif %}
                                             </div>
                                         </div>
                                     </a>
@@ -189,19 +197,23 @@
                                                 </td>
                                                 <td>
                                                     <a href="{{path('bannir',{'id':utilisateur.id})}}">
-                                                        {% if utilisateur.isEnabled %}
-                                                            <div class="btn btn-danger" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Bannir</p>
+                                                        {% if "ROLE_ADMIN" in utilisateur.roles %}
+
+                                                            {% if utilisateur.isEnabled %}
+                                                                <div class="btn btn-danger" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Bannir</p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        {% else %}
-                                                            <div class="btn btn-info" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Débannir</p>
+                                                            {% else %}
+                                                                <div class="btn btn-info" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Débannir</p>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
+                                                            {% endif %}
                                                         {% endif %}
+
 
                                                     </a>
                                                 </td>
@@ -218,92 +230,94 @@
                             </div>
                         </div>
                         <!--/////////////////********|moderateur|********\\\\\\\\\\\\\\\\\!-->
-                        <div id="moderateur" class="tab-pane fade">
-                            <div class="input-append">
-                                <input class="span2" id="appendedInput" type="text">
-                                <span class="glyphicon glyphicon-search add-on"></span>
-                            </div>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Nom et Prénom</th>
-                                            <th>Nom Utilisateur</th>
-                                            <th>Role</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {% for utilisateur in utilisateurs_role %}
+                        {% if is_granted('ROLE_ADMIN') %}
 
+                            <div id="moderateur" class="tab-pane fade">
+                                <div class="input-append">
+                                    <input class="span2" id="appendedInput" type="text">
+                                    <span class="glyphicon glyphicon-search add-on"></span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
                                             <tr>
-                                                <td style="text-center"><a href="#">{{ utilisateur.nom }} {{ utilisateur.prenom }}</a></td>
-                                                <td>{{ utilisateur.username }}</td>
-                                                <td>
-                                                    {% for role in utilisateur.roles %}
-                                                        <p>{{ role }}</p>
-                                                    {% endfor %}
-                                                </td>
-                                                <td>
-                                                    <a href="{{path('retro_user',{'id':utilisateur.id})}}">
-                                                        {% if "ROLE_USER" in utilisateur.roles %}
-                                                            <div class="btn btn-default" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Retirer le Role Utilisateur</p>
-                                                                </div>
-                                                            </div>
-                                                        {% else %}
-                                                            <div class="btn btn-default" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Passer Simple Utilisateur</p>
-                                                                </div>
-                                                            </div>
-                                                        {% endif %}
-
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{path('promote_modo',{'id':utilisateur.id})}}">
-                                                        {% if "ROLE_MODO" in utilisateur.roles %}
-                                                            <div class="btn btn-info" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Retirer le Role Modérateur</p>
-                                                                </div>
-                                                            </div>
-                                                        {% else %}
-                                                            <div class="btn btn-info" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Passer Modérateur</p>
-                                                                </div>
-                                                            </div>
-                                                        {% endif %}
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <a href="{{path('promote_admin',{'id':utilisateur.id})}}">
-                                                        {% if "ROLE_ADMIN" in utilisateur.roles %}
-                                                            <div class="btn btn-danger" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Retirer le Role Admin</p>
-                                                                </div>
-                                                            </div>
-                                                        {% else %}
-                                                            <div class="btn btn-danger" >
-                                                                <div class="BoxFrameBtn " >
-                                                                    <p>Passer Admin</p>
-                                                                </div>
-                                                            </div>
-                                                        {% endif %}
-                                                    </a>
-                                                </td>
+                                                <th>Nom et Prénom</th>
+                                                <th>Nom Utilisateur</th>
+                                                <th>Role</th>
+                                                <th>Action</th>
                                             </tr>
-                                        {% endfor %}
+                                        </thead>
+                                        <tbody>
+                                            {% for utilisateur in utilisateurs_role %}
 
+                                                <tr>
+                                                    <td style="text-center"><a href="#">{{ utilisateur.nom }} {{ utilisateur.prenom }}</a></td>
+                                                    <td>{{ utilisateur.username }}</td>
+                                                    <td>
+                                                        {% for role in utilisateur.roles %}
+                                                            <p>{{ role }}</p>
+                                                        {% endfor %}
+                                                    </td>
+                                                    {#<td>
+                                                        <a href="{{path('retro_user',{'id':utilisateur.id})}}">
+                                                            {% if "ROLE_USER" in utilisateur.roles %}
+                                                                <div class="btn btn-default" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Retirer le Role Utilisateur</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% else %}
+                                                                <div class="btn btn-default" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Passer Simple Utilisateur</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
 
-                                    </tbody>
-                                </table>
+                                                        </a>
+                                                    </td>#}
+                                                    <td>
+                                                        <a href="{{path('promote_modo',{'id':utilisateur.id})}}">
+                                                            {% if "ROLE_MODO" in utilisateur.roles %}
+                                                                <div class="btn btn-info" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Retirer le Role Modérateur</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% else %}
+                                                                <div class="btn btn-info" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Passer Modérateur</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a href="{{path('promote_admin',{'id':utilisateur.id})}}">
+                                                            {% if "ROLE_ADMIN" in utilisateur.roles %}
+                                                                <div class="btn btn-danger" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Retirer le Role Admin</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% else %}
+                                                                <div class="btn btn-danger" >
+                                                                    <div class="BoxFrameBtn " >
+                                                                        <p>Passer Admin</p>
+                                                                    </div>
+                                                                </div>
+                                                            {% endif %}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        {% endif %}
+
                     </div>
 
 

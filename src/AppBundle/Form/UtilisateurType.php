@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class UtilisateurType extends AbstractType
 {
+
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
@@ -16,17 +17,16 @@ class UtilisateurType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('pseudo')
-            ->add('nom')
-            ->add('prenom')
-            ->add('mail')
-            ->add('dateNaissance', BirthdayType::class, ["widget" => "choice", "format" => "ddMMyyyy"])
-            ->add('ville')
-            ->add('twitter')
-            ->add('facebook')
-            ->add('avatar')
-            ->add('signature')
-            ->add('description')
+                ->add('nom')
+                ->add('prenom')
+                ->add('mail')
+                ->add('dateNaissance', BirthdayType::class, ["widget" => "choice", "format" => "ddMMyyyy"])
+                ->add('ville')
+                ->add('twitter')
+                ->add('facebook')
+                ->add('avatar')
+                ->add('signature')
+                ->add('description')
         ;
     }
 
@@ -39,4 +39,5 @@ class UtilisateurType extends AbstractType
             'data_class' => 'AppBundle\Entity\Utilisateur'
         ));
     }
+
 }

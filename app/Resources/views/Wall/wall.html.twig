@@ -18,7 +18,15 @@
 
                     <div class="tab-content" style="padding:10px">
                         <!--/////////////////********|information|********\\\\\\\\\\\\\\\\\!-->
+
                         <div id="information" class="tab-pane fade in active">
+                            <a href="{{path('utilisateur_edit',{'id':app.user.id})}}">
+                                <div class="btn btn-info" >
+                                    <div class="BoxFrameBtn " style="padding:5px" >
+                                        <p>Editer mon profil</p>
+                                    </div>
+                                </div>
+                            </a>
                             <h3>Informations de {{utilisateur.username}}</h3>
                             <ul>
                                 <li>Nom: {{utilisateur.nom}}</li><br />

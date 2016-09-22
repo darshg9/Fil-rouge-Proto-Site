@@ -9,15 +9,17 @@
                     <div class="col-sm-offset-2 col-sm-4">
                         <h1>Liste des séries</h1>
                     </div>
-                    <div class="col-sm-4 ">
-                        <a href="{{path('serie_new')}}" class="aButton pull-right" >
-                            <div class="btn btn-info">
-                                <div class="BoxFrameBtn">
-                                    <p>Proposer une série</p>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="col-sm-4 ">
+                            <a href="{{path('serie_new')}}" class="aButton pull-right" >
+                                <div class="btn btn-info">
+                                    <div class="BoxFrameBtn">
+                                        <p>Proposer une série</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
                 <hr>
                 <!--/////////////////********|Bar de recherche|********\\\\\\\\\\\\\\\\\!-->

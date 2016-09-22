@@ -96,7 +96,7 @@ class UtilisateurController extends Controller
             $em->persist($utilisateur);
             $em->flush();
 
-            return $this->redirectToRoute('utilisateur_edit', array('id' => $utilisateur->getId()));
+            return $this->redirectToRoute('wall_show', array('id' => $utilisateur->getId()));
         }
 
         return $this->render('utilisateur/edit.html.twig', array(
