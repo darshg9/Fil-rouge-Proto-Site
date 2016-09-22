@@ -161,7 +161,8 @@ class CritiqueController extends Controller
      *      })
      * @Method("GET")
      */
-    public function voteAction(Critique $critique, $vote) {
+    public function voteAction(Critique $critique, $vote)
+    {
 
         $critique->setNote($critique->getNote() + $vote);
         $utilisateur = $this->getUser();
@@ -172,7 +173,31 @@ class CritiqueController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('serie_show', ["id" => $critique->getSerie()->getId()]);
+    }
 
+    /**
+     * @Route("/signale/{id}", name="critique_signale")
+     */
+    public function signalAction(Critique $critique)
+    {
+        $critique->setSignale(true);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($critique);
+        $em->flush();
+        return $this->redirectToRoute('serie_show', ["id" => $critique->getSerie()->getId()]);
+    }
+
+    /////////////////********|DELETE CRITIQUE BY THE GET METHOD AND REDITRECT TO THE MODERATION PANEL|********\\\\\\\\\\\\\\\\\
+
+    /**
+     * @Route("/delete/{id}", name="critique_delete_get")
+     */
+    public function deleteGetAction(Critique $critique)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($critique);
+        $em->flush();
+        return $this->redirectToRoute('moderation');
     }
 
 }

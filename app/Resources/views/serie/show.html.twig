@@ -242,13 +242,19 @@
                                                         </div>
                                                     {% endif %}
                                                     {% if not critique.signale %}
-                                                        <a href="html">
+                                                        <a href="{{path('critique_signale',{'id':critique.id})}}">
                                                             <div class="btn btn-danger pull-right" >
                                                                 <div class="BoxFrameBtn " style="padding:5px" >
                                                                     <p>Signaler</p>
                                                                 </div>
                                                             </div>
                                                         </a>
+                                                    {% else %}
+                                                        <div class="btn btn-danger pull-right" >
+                                                            <div class="BoxFrameBtn " style="padding:5px" >
+                                                                <span class="glyphicon glyphicon-exclamation-sign">Commentaire Signalé</span>
+                                                            </div>
+                                                        </div>
                                                     {% endif %}
                                                 </div>
 

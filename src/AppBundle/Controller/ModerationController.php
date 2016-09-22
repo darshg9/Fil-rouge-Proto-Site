@@ -25,7 +25,6 @@ class ModerationController extends Controller
         $utilisateurs_ban = $em->getRepository('AppBundle:Utilisateur')->findUtilisateurBan();
         $utilisateurs_role = $em->getRepository('AppBundle:Utilisateur')->findAll();
         $critiques_signale = $em->getRepository('AppBundle:Critique')->findCritiqueSignale();
-
         return $this->render('moderation/index.html.twig', array(
                     'series' => $series_not_valide,
                     'acteurs' => $acteurs_not_valide,
@@ -76,6 +75,63 @@ class ModerationController extends Controller
         }
         $em->persist($utilisateur);
         $em->flush();
+        return $this->redirectToRoute('moderation');
+    }
+
+    /**
+     * @Route("/promote_modo/{id}", name="promote_modo")
+     */
+    public function promoteModoAction(Utilisateur $utilisateur)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $utilisateur_roles = $utilisateur->getRoles();
+        if (in_array('ROLE_MODO', $utilisateur_roles))
+        {
+            $utilisateur->removeRole('ROLE_MODO');
+        }
+        else
+        {
+            $utilisateur->addRole('ROLE_MODO');
+        }
+        $userManager->updateUser($utilisateur);
+        return $this->redirectToRoute('moderation');
+    }
+
+    /**
+     * @Route("/promote_admin/{id}", name="promote_admin")
+     */
+    public function promoteAdminAction(Utilisateur $utilisateur)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $utilisateur_roles = $utilisateur->getRoles();
+        if (in_array('ROLE_ADMIN', $utilisateur_roles))
+        {
+            $utilisateur->removeRole('ROLE_ADMIN');
+        }
+        else
+        {
+            $utilisateur->addRole('ROLE_ADMIN');
+        }
+        $userManager->updateUser($utilisateur);
+        return $this->redirectToRoute('moderation');
+    }
+
+    /**
+     * @Route("/promote_user/{id}", name="retro_user")
+     */
+    public function retroUserAction(Utilisateur $utilisateur)
+    {
+        $userManager = $this->get('fos_user.user_manager');
+        $utilisateur_roles = $utilisateur->getRoles();
+        if (in_array('ROLE_USER', $utilisateur_roles))
+        {
+            $utilisateur->removeRole('ROLE_USER');
+        }
+        else
+        {
+            $utilisateur->addRole('ROLE_USER');
+        }
+        $userManager->updateUser($utilisateur);
         return $this->redirectToRoute('moderation');
     }
 

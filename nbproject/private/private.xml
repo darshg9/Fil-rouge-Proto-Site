@@ -3,11 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Controller/SerieController.php</file>
+            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Entity/Episode.php</file>
             <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Entity/Acteur.php</file>
             <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Entity/Utilisateur.php</file>
+            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Repository/SerieRepository.php</file>
+            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Entity/Saison.php</file>
             <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Entity/Serie.php</file>
-            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Controller/CritiqueController.php</file>
+            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/app/Resources/views/serie/show.html.twig</file>
             <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Entity/Critique.php</file>
+            <file>file:/C:/wamp/www/Fil-rouge-Proto-Site/src/AppBundle/Controller/EpisodeController.php</file>
         </group>
     </open-files>
 </project-private>

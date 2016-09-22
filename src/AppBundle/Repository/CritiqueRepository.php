@@ -28,35 +28,36 @@ class CritiqueRepository extends EntityRepository
 
     public function findCritiqueSignale()
     {
-        return $this->getEntityManager()->createQuery('SELECT c FROM AppBundle:Critique c WHERE c.signale = true');
+        return $this->getEntityManager()->createQuery('SELECT c FROM AppBundle:Critique c WHERE c.signale = true')
+                        ->getResult();
     }
 
-    public function getCritiquesByAbonnements($em, $id) {
+    public function getCritiquesByAbonnements($em, $id)
+    {
 
         $query = $em->createQuery("SELECT u "
                         ."FROM AppBundle:Utilisateur u "
                         ."WHERE u.id = :id")
-                    ->setParameter("id", $id);
+                ->setParameter("id", $id);
 
         $utilisateur = $query->getSingleResult();
 
         $critiques = [];
 
-        foreach ($utilisateur->getAbonnements() as $abonnement) {
+        foreach ($utilisateur->getAbonnements() as $abonnement)
+        {
 
             $idSerie = $abonnement->getId();
             $query = $em->createQuery("SELECT c "
                             ."FROM AppBundle:Critique c "
                             ."WHERE c.serie = :id "
                             ."ORDER BY c.dateCritique DESC")
-                        ->setParameter("id", $idSerie );
+                    ->setParameter("id", $idSerie);
 
             $critiques[] = ["titre" => $abonnement->getTitre(), "critiques" => $query->getResult()];
-
         }
 
         return $critiques;
-
     }
 
 }
