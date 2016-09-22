@@ -11,7 +11,7 @@
                         <img src="{{serie.url}}" class="img-responsive" alt="Cinque Terre">
                         <div class=" Rating flexcol" style="align-items:  center;" >
                             <div class="flexrow" style="justify-content:  center;width : 100%;">
-                                {% if serie.id not in app.user.voteSeries|keys %}
+                                {% if app.user is not null and serie.id not in app.user.voteSeries|keys %}
                                     <form method="POST" action="{{path('serie_vote',{'id':serie.id})}}">
                                         <div style="width : 80px;">
                                             <select class="form-control" name="vote">
@@ -251,7 +251,7 @@
                                                 <!--                                                    <p class="">Critique :</p>-->
                                                 <div class="flexrow" style='flex-wrap: nowrap;  align-items:  center;justify-content:  space-around;'>
                                                     <p style="padding:5px">Note critique : {{ critique.note }}</p>
-                                                    {% if critique.id not in app.user.voteCritiques %}
+                                                    {% if  app.user is not null and critique.id not in app.user.voteCritiques %}
                                                         <div class="btn btn-success">
                                                             <div class="BoxFrameBtn " style="padding:5px">
                                                                 <p><a href="{{path('critique_vote',{'id':critique.id, "vote": 1})}}">J'aime</a></p>
