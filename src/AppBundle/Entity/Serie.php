@@ -51,11 +51,9 @@ class Serie
     private $status;
 
     /**
-     * @var float
-     *
-     * @ORM\Column(name="Note", type="float", nullable=true)
+     * @ORM\Column(name="Notes", type="array", nullable=true)
      */
-    private $note;
+    private $notes;
 
     /**
      * @var string
@@ -107,6 +105,12 @@ class Serie
      * @ORM\Column(name="valide", type="boolean", nullable=false)
      */
     private $valide;
+
+    public function __construct() {
+
+        $this->notes = [];
+
+    }
 
     /**
      * Get id
@@ -208,29 +212,6 @@ class Serie
     public function getStatus()
     {
         return $this->status;
-    }
-
-    /**
-     * Set note
-     *
-     * @param float $note
-     * @return Serie
-     */
-    public function setNote($note)
-    {
-        $this->note = $note;
-
-        return $this;
-    }
-
-    /**
-     * Get note
-     *
-     * @return float
-     */
-    public function getNote()
-    {
-        return $this->note;
     }
 
     /**
@@ -377,6 +358,35 @@ class Serie
 
         $this->valide = $valide;
         return $this;
+    }
+
+    public function getNotes() {
+
+        return $this->notes;
+
+    }
+
+    public function getNote() {
+
+        $noteSerie = 0;
+        if (!empty($this->notes)) {
+            foreach ($this->notes as $note) {
+
+                $noteSerie = $noteSerie + $note;
+
+            }
+            $noteSerie = floor($noteSerie / sizeof($this->notes));
+
+        }
+        return $noteSerie;
+
+    }
+
+    public function addNote($note) {
+
+        $this->notes[] = $note;
+        return $this;
+
     }
 
 }
