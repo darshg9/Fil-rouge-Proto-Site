@@ -16,6 +16,7 @@ use AppBundle\Form\RealisateurType;
  */
 class RealisateurController extends Controller
 {
+
     /**
      * Lists all Realisateur entities.
      *
@@ -29,7 +30,7 @@ class RealisateurController extends Controller
         $realisateurs = $em->getRepository('AppBundle:Realisateur')->findAll();
 
         return $this->render('realisateur/index.html.twig', array(
-            'realisateurs' => $realisateurs,
+                    'realisateurs' => $realisateurs,
         ));
     }
 
@@ -45,17 +46,18 @@ class RealisateurController extends Controller
         $form = $this->createForm('AppBundle\Form\RealisateurType', $realisateur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($realisateur);
             $em->flush();
 
-            return $this->redirectToRoute('realisateur_show', array('id' => $realisateur->getId()));
+            return $this->redirectToRoute('serie_new');
         }
 
         return $this->render('realisateur/new.html.twig', array(
-            'realisateur' => $realisateur,
-            'form' => $form->createView(),
+                    'realisateur' => $realisateur,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -70,8 +72,8 @@ class RealisateurController extends Controller
         $deleteForm = $this->createDeleteForm($realisateur);
 
         return $this->render('realisateur/show.html.twig', array(
-            'realisateur' => $realisateur,
-            'delete_form' => $deleteForm->createView(),
+                    'realisateur' => $realisateur,
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -87,7 +89,8 @@ class RealisateurController extends Controller
         $editForm = $this->createForm('AppBundle\Form\RealisateurType', $realisateur);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($realisateur);
             $em->flush();
@@ -96,9 +99,9 @@ class RealisateurController extends Controller
         }
 
         return $this->render('realisateur/edit.html.twig', array(
-            'realisateur' => $realisateur,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'realisateur' => $realisateur,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -113,7 +116,8 @@ class RealisateurController extends Controller
         $form = $this->createDeleteForm($realisateur);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->remove($realisateur);
             $em->flush();
@@ -132,9 +136,10 @@ class RealisateurController extends Controller
     private function createDeleteForm(Realisateur $realisateur)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('realisateur_delete', array('id' => $realisateur->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('realisateur_delete', array('id' => $realisateur->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }

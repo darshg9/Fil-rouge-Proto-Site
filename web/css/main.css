@@ -65,12 +65,12 @@ h1, h2, h3, h4
 }
 section
 {
-    background-color: #edf5ff;
-    padding: 5px;
+    padding: 20px;
     z-index: 1;
 }
 body
 {
+    background-color: #ffffff;
 
 }
 .Box
@@ -78,7 +78,7 @@ body
     padding:5px;
     color: white;
     box-shadow: 3px 3px 2px 2px #323232;
-    margin-top:10px;
+    margin-top:20px;
     height: 500px;
 }
 

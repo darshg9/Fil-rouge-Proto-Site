@@ -149,7 +149,8 @@
 
                 </div>
                 <!--/////////////////********|Synopsy|********\\\\\\\\\\\\\\\\\!-->
-                <div class="panel-group">
+                <div class="panel-group" style="width : 100%;
+                     ">
                     <div class="panel panel-success">
                         <div class="panel-heading">Synopsy</div>
                         <div class="panel-body">
@@ -176,7 +177,8 @@
 
                         {{ form_start(form,{'action': path('critique_new',{'id':serie.id})}) }}
                         {{ form_widget(form) }}
-                        <input type="submit" value="Create" />
+                        <input type="submit" class="form-control btn btn-success" value="Ajouter un commentaire">
+
                         {{ form_end(form) }}
                     </div>
                 </div>

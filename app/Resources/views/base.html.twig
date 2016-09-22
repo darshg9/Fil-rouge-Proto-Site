@@ -11,7 +11,10 @@
         <link rel="stylesheet" href="./public/css/main.css"/>
         <link rel="stylesheet" href="{{ asset('css/main.css') }}"/>
     </head>
-    {% include 'header.html.twig' %}
+    {% block header %}
+        {% include 'header.html.twig' %}
+
+    {% endblock %}
     <body>
         {% block body %}
 
