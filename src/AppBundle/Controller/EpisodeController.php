@@ -16,6 +16,7 @@ use AppBundle\Form\EpisodeType;
  */
 class EpisodeController extends Controller
 {
+
     /**
      * Lists all Episode entities.
      *
@@ -29,7 +30,7 @@ class EpisodeController extends Controller
         $episodes = $em->getRepository('AppBundle:Episode')->findAll();
 
         return $this->render('episode/index.html.twig', array(
-            'episodes' => $episodes,
+                    'episodes' => $episodes,
         ));
     }
 
@@ -48,7 +49,8 @@ class EpisodeController extends Controller
         $form = $this->createForm('AppBundle\Form\EpisodeType', $episode);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
 
             $auteur = $this->getUser();
             $em = $this->getDoctrine()->getManager();
@@ -63,8 +65,8 @@ class EpisodeController extends Controller
         }
 
         return $this->render('episode/new.html.twig', array(
-            'episode' => $episode,
-            'form' => $form->createView(),
+                    'episode' => $episode,
+                    'form' => $form->createView(),
         ));
     }
 
@@ -76,11 +78,18 @@ class EpisodeController extends Controller
      */
     public function showAction(Episode $episode)
     {
+        $em = $this->getDoctrine()->getManager();
+
         $deleteForm = $this->createDeleteForm($episode);
+        $serie = $episode->getSaison()->getSerie();
+        $saison_all = $em->getRepository('AppBundle:Serie')->findAllSaison($serie->getId());
+        $acteurs_serie = $em->getRepository('AppBundle:Serie')->findActeurs($serie->getId());
 
         return $this->render('episode/show.html.twig', array(
-            'episode' => $episode,
-            'delete_form' => $deleteForm->createView(),
+                    'episode' => $episode,
+                    'acteurs_serie' => $acteurs_serie,
+                    'delete_form' => $deleteForm->createView(),
+                    'saisons_all' => $saison_all,
         ));
     }
 
@@ -96,7 +105,8 @@ class EpisodeController extends Controller
         $editForm = $this->createForm('AppBundle\Form\EpisodeType', $episode);
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
+        if ($editForm->isSubmitted() && $editForm->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->persist($episode);
             $em->flush();
@@ -105,9 +115,9 @@ class EpisodeController extends Controller
         }
 
         return $this->render('episode/edit.html.twig', array(
-            'episode' => $episode,
-            'edit_form' => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+                    'episode' => $episode,
+                    'edit_form' => $editForm->createView(),
+                    'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -122,7 +132,8 @@ class EpisodeController extends Controller
         $form = $this->createDeleteForm($episode);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid())
+        {
             $em = $this->getDoctrine()->getManager();
             $em->remove($episode);
             $em->flush();
@@ -141,9 +152,10 @@ class EpisodeController extends Controller
     private function createDeleteForm(Episode $episode)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('episode_delete', array('id' => $episode->getId())))
-            ->setMethod('DELETE')
-            ->getForm()
+                        ->setAction($this->generateUrl('episode_delete', array('id' => $episode->getId())))
+                        ->setMethod('DELETE')
+                        ->getForm()
         ;
     }
+
 }
