@@ -16,12 +16,25 @@
                         <div class="detailTitle flexrow" style="justify-content: space-between; padding:20px; align-items:  center;">
                             <h1>{{ episode.saison.serie.titre }}</h1>
                             <div>
-                                <a href="twigpath"></a>
-                                <div class="btn btn-info" >
-                                    <div class="BoxFrameBtn " >
-                                        <p>A voir</p>
+                                {% if episode in app.user.episodesVisionnes %}
+
+                                    <div class="btn btn-info">
+                                        <div class="BoxFrameBtn ">
+                                            <p>Déjà vu</p>
+                                        </div>
                                     </div>
-                                </div>
+
+                                {% else %}
+                                    <a href="{{path('view_episode',{'id':episode.id})}}">
+
+                                        <div class="btn btn-info">
+                                            <div class="BoxFrameBtn ">
+                                                <p>A voir</p>
+                                            </div>
+                                        </div>
+                                    </a>
+
+                                {% endif %}
                             </div>
                         </div>
                         <div class="detailDescription">
@@ -37,8 +50,8 @@
                                         <table class="table table-hover">
                                             <tbody>
                                                 <tr>
-                                                    <td>Episode n° :</td>
-                                                    <td></td>
+                                                    <td>Episode :</td>
+                                                    <td>{{ episode.titre }}</td>
                                                 </tr>
                                                 <tr>
                                                     <td>Titre épisode :</td>

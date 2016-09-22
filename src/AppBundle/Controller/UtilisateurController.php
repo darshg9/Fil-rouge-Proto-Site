@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Episode;
 use AppBundle\Entity\Serie;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -163,6 +164,21 @@ class UtilisateurController extends Controller
         $em->persist($utilisateur);
         $em->flush();
         return $this->redirectToRoute('serie_show', ['id' => $serie->getId()]);
+    }
+
+    /**
+     * @Route("/view/{id}", name="view_episode")
+     */
+    public function view(Episode $episode)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $utilisateur = $this->getUser();
+
+        $episode->addViewer($utilisateur);
+        $em->persist($utilisateur);
+        $em->persist($episode);
+        $em->flush();
+        return $this->redirectToRoute('episode_show', ['id' => $episode->getId()]);
     }
 
 }

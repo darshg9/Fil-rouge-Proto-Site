@@ -198,7 +198,7 @@
                                 <ul class="list-group">
 
                                     {% for key,episode in saison.episodes %}
-                                        <li class="list-group-item"><a href="episodeDetail.php">Episode {{ key+1 }}</a></li>
+                                        <li class="list-group-item"><a href="{{path('episode_show',{'id':episode.id})}}">Episode {{ key+1 }} - {{ episode.titre }}</a></li>
 
                                     {% endfor %}
                                 </ul>
