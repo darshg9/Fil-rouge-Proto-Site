@@ -44,13 +44,13 @@
                                                 <span class="glyphicon glyphicon-star-empty"></span>
                                             {% endfor %}
                                         {% endif %}
+                                    </div>
 
-                                        <h3>{{ serie.getNoteSerie }} - {{ serie.notes|length}} vote(s)</h3>
-                                    {% else %}
-                                        <h3>Pas de votes pour cette série</h3>
-                                    {% endif %}
+                                    <h3>{{ serie.getNoteSerie }} - {{ serie.notes|length}} vote(s)</h3>
+                                {% else %}
+                                    <h3>Pas de votes pour cette série</h3>
+                                {% endif %}
 
-                                </div>
                             </div>
 
                         </div>
@@ -76,28 +76,33 @@
                                                 </div>
                                             </div>
                                         {% endif %}
-                                    {% endif %}
 
-                                </a>
+                                    </a>
+                                    <a href="{{path('episode_new',{'id':saison_last.id})}}" class="aButton" >
+                                        <div class="btn btn-info">
+                                            <div class="BoxFrameBtn">
+                                                <p>Proposer un épisode</p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                {% endif %}
 
-                                <div class="btn btn-warning" >
-                                    <div class="BoxFrameBtn " >
-                                        <p><a href="{{ path('serie_edit', { 'id': serie.id }) }}">Editer</a></p>
-                                    </div>
-                                </div>
-                                <a href="{{path('episode_new',{'id':saison_last.id})}}" class="aButton" >
-                                    <div class="btn btn-info">
-                                        <div class="BoxFrameBtn">
-                                            <p>Proposer un épisode</p>
+                                {% if is_granted('ROLE_MODO') %}
+
+                                    <div class="btn btn-warning" >
+                                        <div class="BoxFrameBtn " >
+                                            <p><a href="{{ path('serie_edit', { 'id': serie.id }) }}">Editer</a></p>
                                         </div>
                                     </div>
-                                </a>
-                                <div class="btn btn-danger" >
-                                    {{ form_start(delete_form) }}
-                                    <input type="submit" class="BoxFrameBtn" style="background-color: inherit;border: 0px" value="Delete">
-                                    {{ form_end(delete_form) }}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <div class="btn btn-danger" >
+                                            {{ form_start(delete_form) }}
+                                            <input type="submit" class="BoxFrameBtn" style="background-color: inherit;border: 0px" value="Delete">
+                                            {{ form_end(delete_form) }}
 
-                                </div>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                         <div class="detailDescription">

@@ -30,7 +30,7 @@ class ActeurRepository extends EntityRepository
     public function popularSerie($id)
     {
         return $this->getEntityManager()
-                        ->createQuery('Select s FROM AppBundle:Serie s JOIN s.roles r WHERE s.note >=4 AND r.acteur = :id')->setParameter('id', $id)
+                        ->createQuery('Select s FROM AppBundle:Serie s JOIN s.roles r WHERE s.noteSerie >=4 AND r.acteur = :id')->setParameter('id', $id)
                         ->getResult();
     }
 
