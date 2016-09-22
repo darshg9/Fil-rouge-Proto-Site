@@ -87,7 +87,10 @@ class SerieController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $deleteForm = $this->createDeleteForm($serie);
-        $saison = $em->getRepository('AppBundle:Serie')->findLastSaison($serie->getId());
+        $saison_last = $em->getRepository('AppBundle:Serie')->findLastSaison($serie->getId());
+        $saison_all = $em->getRepository('AppBundle:Serie')->findAllSaison($serie->getId());
+
+
         $critique = new Critique();
         $acteurs_serie = $em->getRepository('AppBundle:Serie')->findActeurs($serie->getId());
         $critiques_serie = $em->getRepository('AppBundle:Serie')->findCritiques($serie->getId());
@@ -99,7 +102,8 @@ class SerieController extends Controller
                     'acteurs_serie' => $acteurs_serie,
                     'critiques_serie' => $critiques_serie,
                     'critique' => $critique,
-                    'saison' => $saison,
+                    'saison_last' => $saison_last,
+                    'saisons_all' => $saison_all,
                     'delete_form' => $deleteForm->createView(),
                     'form' => $form->createView(),
         ));

@@ -72,7 +72,7 @@
                                         <p><a href="{{ path('serie_edit', { 'id': serie.id }) }}">Editer</a></p>
                                     </div>
                                 </div>
-                                <a href="{{path('episode_new',{'id':saison.id})}}" class="aButton" >
+                                <a href="{{path('episode_new',{'id':saison_last.id})}}" class="aButton" >
                                     <div class="btn btn-info">
                                         <div class="BoxFrameBtn">
                                             <p>Proposer un épisode</p>
@@ -188,18 +188,23 @@
                 <div class="panel-group">
                     <!--/////////////////********|Saison 1|********\\\\\\\\\\\\\\\\\!-->
                     <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <h4 class="panel-title ">
-                                <a data-toggle="collapse" href="#saison1">Saison 1</a>
-                            </h4>
-                        </div>
-                        <div id="saison1" class="panel-collapse collapse ">
-                            <ul class="list-group">
-                                <li class="list-group-item"><a href="episodeDetail.php">Episode 1</a></li>
-                                <li class="list-group-item"><a href="episodeDetail.php">Episode 2</a></li>
-                                <li class="list-group-item"><a href="episodeDetail.php">Episode 3</a></li>
-                            </ul>
-                        </div>
+                        {% for key,saison in saisons_all %}
+                            <div class="panel-heading">
+                                <h4 class="panel-title ">
+                                    <a data-toggle="collapse" href="#saison1">Saison {{ key+1 }}</a>
+                                </h4>
+                            </div>
+                            <div id="saison1" class="panel-collapse collapse ">
+                                <ul class="list-group">
+
+                                    {% for key,episode in saison.episodes %}
+                                        <li class="list-group-item"><a href="episodeDetail.php">Episode {{ key+1 }}</a></li>
+
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endfor %}
+
                     </div>
 
                     <!--/////////////////********|End Panel|********\\\\\\\\\\\\\\\\\!-->

@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Episode
 {
+
     /**
      * @var int
      *
@@ -43,9 +44,9 @@ class Episode
     private $resume;
 
     /**
-     * @var array
+     * @var string
      *
-     * @ORM\Column(name="Diffusions", type="array", nullable=true)
+     * @ORM\Column(name="Diffusions", type="text", nullable=true)
      */
     private $diffusions;
 
@@ -70,7 +71,6 @@ class Episode
      * @ORM\Column(name="valide", type="boolean", nullable=false)
      */
     private $valide;
-
 
     /**
      * Get id
@@ -151,72 +151,72 @@ class Episode
         return $this->resume;
     }
 
-    public function addDiffusion($diffusion) {
+    public function addDiffusion($diffusion)
+    {
 
         $this->diffusions[] = $diffusion;
         return $this;
-
     }
 
-    public function getDiffusions() {
+    public function getDiffusions()
+    {
 
         return $this->diffusions;
-
     }
 
-    public function setSaison($saison) {
+    public function setSaison($saison)
+    {
 
         $this->saison = $saison;
         $saison->addEpisode($this);
         return $this;
-
     }
 
-    public function getSaison() {
+    public function getSaison()
+    {
 
         return $this->saison;
-
     }
 
-    public function setAuteurProposition($auteurProposition) {
+    public function setAuteurProposition($auteurProposition)
+    {
 
         $this->auteurProposition = $auteurProposition;
         $auteurProposition->addPropositionsEpisodes($this)->addActivite(["type" => "episode", "cible" => $this])->addEpisodesVisionnes($this)->addActivite(["type" => "visionnage", "cible" => $this]);
         return $this;
-
     }
 
-    public function getAuteurProposition() {
+    public function getAuteurProposition()
+    {
 
         return $this->auteurProposition;
-
     }
 
-    public function addViewer($viewer) {
+    public function addViewer($viewer)
+    {
 
         $this->viewers[] = $viewer;
         $viewer->addEpisodesVisionnes($this)->addActivite(["type" => "visionnage", "cible" => $this]);
         return $this;
-
     }
 
-    public function getViewers() {
+    public function getViewers()
+    {
 
         return $this->viewers;
-
     }
 
-    public function getValide() {
+    public function getValide()
+    {
 
         return $this->valide;
-
     }
 
-    public function setValide($valide) {
+    public function setValide($valide)
+    {
 
         $this->valide = $valide;
         return $this;
-
     }
 
 }

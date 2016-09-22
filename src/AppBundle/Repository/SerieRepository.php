@@ -61,4 +61,12 @@ class SerieRepository extends EntityRepository
                         ->getSingleResult();
     }
 
+    public function findAllSaison($id)
+    {
+        return $this->getEntityManager()
+                        ->createQuery('SELECT s FROM AppBundle:Saison s WHERE s.serie = :id ORDER BY s.serie DESC')
+                        ->setParameter('id', $id)
+                        ->getResult();
+    }
+
 }
